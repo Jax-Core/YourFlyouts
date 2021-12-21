@@ -1,6 +1,6 @@
 [HotkeysTitle]
 Meter=String
-Text=Flyouts activation
+Text=Activation
 MeterStyle=Set.String:S | Set.OptionCat:S
 
 
@@ -12,7 +12,7 @@ MeterStyle=Set.String:S | Set.OptionName:S
 
 [ModuelsTitle]
 Meter=String
-Text=Flyouts modules
+Text=Modules
 MeterStyle=Set.String:S | Set.OptionCat:S
 
 [Option11]
@@ -33,6 +33,32 @@ MeterStyle=Set.Div:S
 [Option13]
 Meter=String
 Text=CapsLock / NumLock / ScrollLock
+MeterStyle=Set.String:S | Set.OptionName:S
+
+
+[FunctionTitle]
+Meter=String
+Text=Operation
+MeterStyle=Set.String:S | Set.OptionCat:S
+
+[Option21]
+Meter=String
+Text=Activate flyouts when media keys are pressed
+MeterStyle=Set.String:S | Set.OptionName:S
+[Set.Div:S121322]
+Meter=Shape
+MeterStyle=Set.Div:S
+[Option22]
+Meter=String
+Text=Smart volume keys - hold shift to change player volume instead of system
+FontColor=#Set.Text_Color#,(150+105*#Media#)
+MeterStyle=Set.String:S | Set.OptionName:S
+[Set.Div:S12391321]
+Meter=Shape
+MeterStyle=Set.Div:S
+[Option23]
+Meter=String
+Text=Volume to change when volume key is pressed
 MeterStyle=Set.String:S | Set.OptionName:S
 
 
@@ -64,3 +90,21 @@ Hidden=(1-#Media#)
 Meter=Shape
 MeterStyle=Set.Bool:S
 Y=([Option13:Y]-#Set.P#+(-20/2+8)*[Set.S])
+
+[MediaKeys]
+Meter=Shape
+MeterStyle=Set.Bool:S
+Y=([Option21:Y]-#Set.P#+(-20/2+8)*[Set.S])
+[SmartVolume]
+Meter=Shape
+MeterStyle=Set.Bool:S
+Y=([Option22:Y]-#Set.P#+(-20/2+8)*[Set.S])
+[MediaKeyChange]
+Meter=Shape
+MeterStyle=Set.Textbox:S
+Type=Int|1|20
+Y=([Option23:Y]-#Set.P#+(-30/2+8)*[Set.S])
+[Value23]
+Meter=String
+Text=#MediaKeyChange#
+MeterStyle=Set.String:S | Set.Value:S

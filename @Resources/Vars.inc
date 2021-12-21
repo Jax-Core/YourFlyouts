@@ -1,16 +1,18 @@
 [Variables]
 Media=1
+MediaKeys=1
+SmartVolume=1
 FetchImage=1
 Locks=1
 
-Ani=0
-AniDir=Left
+Ani=1
+AniDir=Top
 
-Timeout=20
+Timeout=1
 MediaKeyChange=5
 
-Position=BR
+Position=TC
 MonitorIndex=1
 ScreenPadding=30
 
-Layout=Plainext
+Layout=Modern

@@ -1,0 +1,13 @@
+[Variables]
+FontFace=Consolas
+DividerCharacter=-
+DividerCap=
+DividerLength=20
+BarCharacter=|
+BarLength=20
+FontColor=255,255,255
+PrimaryColor=0,0,0
+PrimaryOpacity=255
+FontColor2=150,150,150
+AccentColor=255,0,0
+Scale=1.3

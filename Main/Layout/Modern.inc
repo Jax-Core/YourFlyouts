@@ -19,6 +19,46 @@ DynamicVariables=1
 Group=Music | Standard
 Container=MediaC
 
+; ---------------------------------------------------------------------------- ;
+;                                   Function                                   ;
+; ---------------------------------------------------------------------------- ;
+
+
+[mVolume]
+Measure=Plugin
+Plugin=Win7AudioPlugin
+DynamicVariables=1
+OnChangeAction=[!Setvariable SliderX ([mVolume:]/100*#SliderW#+#SliderM#)][!UpdateMeterGroup Dynamic][!Redraw]
+IfCondition=mVolume < 20
+IfTrueAction=[!SetOption VolumeIcon Text "[\xE992]"]
+IfCondition2=(mVolume >= 20) && (mVolume < 50)
+IfTrueAction2=[!SetOption VolumeIcon Text "[\xE993]"]
+IfCondition3=(mVolume >= 50) && (mVolume < 90)
+IfTrueAction3=[!SetOption VolumeIcon Text "[\xE994]"]
+IfCondition4=(mVolume >= 90)
+IfTrueAction4=[!SetOption VolumeIcon Text "[\xE995]"]
+UpdateDivider=1
+
+[SliderPercent]
+Measure=Calc
+Formula=((#SliderX#-(#SliderM#))*100/(((#SliderM#)+#SliderW#)-(#SliderM#)))
+OnUpdateAction=[!CommandMeasure "mVolume" "SetVolume [#CURRENTSECTION#]"][!UpdateMeasure mVolume]
+DynamicVariables=1
+Disabled=1
+Group=NUOL
+
+[VolumeMouse]
+Measure=Plugin
+Plugin=Mouse
+; this measure uses the Plugin:Mouse
+LeftMouseDragAction=[!SetVariable SliderX "(Clamp(($MouseX$),(#SliderM#),((#SliderM#)+#SliderW#)))"][!UpdateMeasure SliderPercent]
+; actions to be executed when the mouse drags. The first bang gets the mouse value and make sure it's in the slider. The bangs after that updates the required measures and the slider.
+LeftMouseUpAction=[!SetVariable SliderX "(Clamp(($MouseX$),(#SliderM#),((#SliderM#)+#SliderW#)))"][!UpdateMeasure SliderPercent][!CommandMeasure VolumeMouse "Stop"]
+; actions to be executed after the mouse click is lifted. The first bang stops the measure to retrieve information from mouse dragging.
+RelativeToSkin=1
+RequireDragging=1
+DynamicVariables=1
+
 
 ; --------------------------------- VolumeBar -------------------------------- ;
 

@@ -7,21 +7,26 @@ numberkeys := 0
 ; IniRead, OutputVar, Hotkeys.ini, Variables, Key
 IniRead, RainmeterPath, Hotkeys.ini, Variables, RMPATH
 IniRead, Media, ..\Vars.inc, Variables, Media
+IniRead, MediaKeys, ..\Vars.inc, Variables, MediaKeys
+IniRead, SmartVolume, ..\Vars.inc, Variables, SmartVolume
 
-if (Media = 1)
+if (Media = 1) and (MediaKeys = 1)
 {
     Hotkey Media_Play_Pause, actionPause
     Hotkey Media_Next, actionNext
     Hotkey Media_Prev, actionPrev
-    Return
 }
-Return
-if (Media = 0)
+else
 {
     Hotkey Media_Play_Pause, rejectPause
     Hotkey Media_Next, rejectNext
     Hotkey Media_Prev, rejectPrev
-    Return
+}
+
+if (SmartVolume = 1)
+{
+    Hotkey +Volume_Up, MediaUp
+    Hotkey +Volume_Down, MediaDown
 }
 Return
 
@@ -50,4 +55,12 @@ Return
 
 rejectPrev:
     Send {Media_Prev}
+Return
+
+MediaUp:
+    Run "%RainmeterPath% "!CommandMeasure "Func" "mediaVol('up')" "YourFlyouts\Main" "
+Return
+
+MediaDown:
+    Run "%RainmeterPath% "!CommandMeasure "Func" "mediaVol('down')" "YourFlyouts\Main" "
 Return

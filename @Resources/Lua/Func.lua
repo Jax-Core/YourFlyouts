@@ -57,13 +57,15 @@ function Initialize()
 
     if tonumber(SKIN:GetVariable('Locks')) == 0 then
         SKIN:Bang('[!CommandMeasure CapsLock Stop][!CommandMeasure ScrollLock Stop][!CommandMeasure NumLock Stop][!DisableMeasureGroup Locks]')
+    else
+        SKIN:Bang('[!Delay 100][!SetOptionGroup Locks KeyDownAction """[!CommandMEasure Func "actionLoad(\'Locks\')"][!UpdateMeasure #*CURRENTSECTION*#]"""][!UpdateMeasureGroup Locks]')
     end
 
     -- ------------------------- handle animation toggle ------------------------ --
 
-    if tonumber(SKIN:GetVariable('Ani')) == 0 then
-        SKIN:Bang('[!SetVariable TweenNode1 100][!SetVariable TweenNode2 100][!UpdateMeterGroup Ani]')
-    end
+    -- if tonumber(SKIN:GetVariable('Ani')) == 0 then
+    --     SKIN:Bang('[!SetVariable TweenNode1 100]')
+    -- end
 
 end
 
@@ -103,6 +105,15 @@ function actionLoad(type)
     end
 end
 
+function mediaVol(dir)
+    if dir == 'up' then
+        SKIN:Bang('[!CommandMeasure "state'..currentPlayer..'" "SetVolume +#MediaKeyChange#"]')
+    else
+        SKIN:Bang('[!CommandMeasure "state'..currentPlayer..'" "SetVolume -#MediaKeyChange#"]')
+    end
+end
+
+
 -- -------------------------------------------------------------------------- --
 --                                 Media logic                                --
 -- -------------------------------------------------------------------------- --
@@ -123,14 +134,14 @@ function checkMedia()
     -- if currentPlayer ~= checkingPlayer then
     if checkingPlayer == 'WebNowPlaying' then
         SKIN:Bang('[!EnableMeasureGroup WNP][!DisableMeasureGroup NP]')
-        SKIN:Bang('[!SetVariable PlayerType WNP][!UpdateMeterGroup Music][!Redraw]')
+        SKIN:Bang('[!SetVariable PlayerType WNP][!UpdateMeterGroup Music]')
 
         if SKIN:GetVariable('FetchImage') == 0 then
             SKIN:Bang('[!DisableMeasure wnpCover]')
         end
     else 
         SKIN:Bang('[!EnableMeasureGroup NP][!DisableMeasureGroup WNP]')
-        SKIN:Bang('[!SetVariable PlayerType NP][!UpdateMeterGroup Music][!Redraw]')
+        SKIN:Bang('[!SetVariable PlayerType NP][!UpdateMeterGroup Music]')
 
         if SKIN:GetVariable('FetchImage') == 0 then
             SKIN:Bang('[!DisableMeasure npCover]')
@@ -141,22 +152,22 @@ function checkMedia()
     SKIN:Bang('[!UpdateMeasureGroup Music]')
 
     currentPlayer = checkingPlayer
-    -- end
 
 
-    if tonumber(SKIN:GetVariable('mToggle')) ~= 0 then
-        if checkingPlayerState == 1 then SKIN:Bang('[!SetOption MediaPlayPause MeterStyle "Sec.BottomButton:S | Pause"][!UpdateMeter MediaPlayPause][!Redraw]')
-        elseif checkingPlayerState == 2 then SKIN:Bang('[!SetOption MediaPlayPause MeterStyle "Sec.BottomButton:S | Play"][!UpdateMeter MediaPlayPause][!Redraw]')
-        elseif checkingPlayerState == 0 then SKIN:Bang('[!SetOption MediaPlayPause MeterStyle "Sec.BottomButton:S | Play"][!UpdateMeter MediaPlayPause][!Redraw]')
-        end
+    if checkingPlayerState == 1 then SKIN:Bang('[!SetOption MediaPlayPause MeterStyle "Sec.BottomButton:S | Pause"][!UpdateMeter MediaPlayPause]')
+    elseif checkingPlayerState == 2 then SKIN:Bang('[!SetOption MediaPlayPause MeterStyle "Sec.BottomButton:S | Play"][!UpdateMeter MediaPlayPause]')
+    elseif checkingPlayerState == 0 then SKIN:Bang('[!SetOption MediaPlayPause MeterStyle "Sec.BottomButton:S | Play"][!UpdateMeter MediaPlayPause]')
     end
 
     if checkingPlayerState == 0 then
-        SKIN:Bang('[!HideMeterGroup Music][!UpdateMeterGroup Music][!Redraw]')
+        SKIN:Bang('[!HideMeterGroup Music][!UpdateMeterGroup Music]')
     else
-        SKIN:Bang('[!ShowMeterGroup Music][!UpdateMeterGroup Music][!Redraw]')
+        SKIN:Bang('[!ShowMeterGroup Music][!UpdateMeterGroup Music]')
     end
-    -- print(checkingPlayerState, checkingPlayer, currentPlayer)
+    
+    if tonumber(SKIN:GetVariable('mToggle')) ~= 0 then
+        SKIN:Bang('[!Redraw]')
+    end
 end
 
 -- -------------------------------------------------------------------------- --
@@ -178,4 +189,51 @@ function startDrop(variant, handler, offset)
     SKIN:Bang('!ZPos', '0')
 	SKIN:Bang('!Activateconfig', 'QuickNote\\Main\\Accessories', 'Drop.ini')
 	SKIN:Bang('!Move', PosX, PosY, 'QuickNote\\Main\\Accessories')
+end
+
+function returnDiv(divChar)
+    local divLength = SKIN:GetVariable('DividerLength')
+    local this = divChar
+    for i = 1, divLength - 1 do
+        this = this..divChar
+    end
+    return this
+end
+
+function returnBar(measureName, multiplier)
+    local function DIV(a,b)
+        return (a - a % b) / b
+    end
+    if multiplier == nil then multiplier = 1 end
+    local VolumeLevel = SKIN:GetMeasure(measureName):GetValue() * multiplier
+    local barChar = SKIN:GetVariable('BarCharacter')
+    local barLength = SKIN:GetVariable('BarLength')
+    local resultBarLength = DIV((barLength * VolumeLevel), 100)
+    -- local this = ''
+    -- for i = 1, resultBarLength do
+    --     this = this..barChar
+    -- end
+    return resultBarLength
+end
+
+function checkEscape(char)
+    if char == '|' or char == '\\' or char == '/' or char == '*' or char == '.' then
+        return '\\'..char
+    else
+        return char 
+    end
+end
+
+function returnBool(String, Match, ReturnStringT, ReturnStringF)
+	local function startswith(text, prefix)
+		return text:find(prefix, 1, true) == 1
+	end
+
+	ReturnStringT = ReturnStringT or '1'
+	ReturnStringF = ReturnStringF or '0'
+	if string.find(String, Match) then
+		return(ReturnStringT)
+	  else
+		return(ReturnStringF)
+	end
 end
