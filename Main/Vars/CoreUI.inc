@@ -1,0 +1,15 @@
+[Variables]
+Width=400
+R=8
+FontFace=Poppins
+Stroke=0
+Dotsize=10
+Cap=Round
+PrimaryColor=12,12,12
+PrimaryOpacity=255
+SecondaryColor=150,150,150
+SecondaryOpacity=255
+FontColor=255,255,255
+FontColor2=150,150,150
+AccentColor=255,12,0
+Scale=1
