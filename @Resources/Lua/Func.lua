@@ -15,10 +15,10 @@ function Initialize()
         local say = SKIN:GetVariable('SCREENAREAY@'..MonitorIndex)
         local saw = SKIN:GetVariable('SCREENAREAWIDTH@'..MonitorIndex)
         local sah = SKIN:GetVariable('SCREENAREAHEIGHT@'..MonitorIndex)
-        local moveX = 0
-        local moveY = 0
-        local anchorX = 0
-        local anchorY = 0
+        moveX = 0
+        moveY = 0
+        anchorX = 0
+        anchorY = 0
         
         if posX == 'L' then moveX = pad
         elseif posX == 'C' then
@@ -39,7 +39,7 @@ function Initialize()
         end
 
         SKIN:Bang('!SetWindowPosition '..moveX..' '..moveY..' '..anchorX..' '..anchorY)
-        SKIN:Bang('[!SetVariable SkinX '..moveX..'][!SetVariable SkinY '..moveY..'][!SetVariable SkinAX '..anchorX..'][!SetVariable SkinAY '..anchorY..'][!UpdateMeasure ActionTimer]')
+        -- SKIN:Bang('[!SetVariable SkinX '..moveX..'][!SetVariable SkinY '..moveY..'][!SetVariable SkinAX '..anchorX..'][!SetVariable SkinAY '..anchorY..'][!UpdateMeasure ActionTimer]')
     end
 
     -- --------------------------- handle media toggle -------------------------- --
@@ -63,10 +63,40 @@ function Initialize()
 
     -- ------------------------- handle animation toggle ------------------------ --
 
-    -- if tonumber(SKIN:GetVariable('Ani')) == 0 then
-    --     SKIN:Bang('[!SetVariable TweenNode1 100]')
-    -- end
+    if tonumber(SKIN:GetVariable('Ani')) == 1 then
+        AniSteps = tonumber(SKIN:GetVariable('AniSteps'))
+        TweenInterval = 100 / AniSteps
+        ScreenPadding = SKIN:GetVariable('ScreenPadding')
+        AniDir = SKIN:GetVariable('AniDir')
+        dofile(SELF:GetOption("ScriptFile"):match("(.*[/\\])") .. "tween.lua")
+        subject = {
+            TweenNode = 0
+        }
+        t = tween.new(AniSteps, subject, {TweenNode=100}, SKIN:GetVariable('Easetype'))
+    end
 
+end
+
+function tweenAnimation(dir)
+    if dir == 'in' then 
+        local complete = t:update(1)
+    else
+        local complete = t:update(-1)
+    end
+    resultantTN = subject.TweenNode
+    if resultantTN > 100 then resultantTN = 100 elseif resultantTN < 0 then resultantTN = 0 end
+    local bang = '[!SetVariable TweenNode1 '..resultantTN..'][!SetTransparency '..(resultantTN / 100 * 255)..']'
+    if AniDir == 'Left' then
+        bang = bang..'[!SetWindowPosition '..moveX + (resultantTN / 100 - 1) * ScreenPadding..' '..moveY..' '..anchorX..' '..anchorY..']'
+    elseif AniDir == 'Right' then
+        bang = bang..'[!SetWindowPosition '..moveX + (1 - resultantTN / 100) * ScreenPadding..' '..moveY..' '..anchorX..' '..anchorY..']'
+    elseif AniDir == 'Top' then
+        bang = bang..'[!SetWindowPosition '..moveX..' '..moveY + (resultantTN / 100 - 1) * ScreenPadding..' '..anchorX..' '..anchorY..']'
+    elseif AniDir == 'Bottom' then
+        bang = bang..'[!SetWindowPosition '..moveX..' '..moveY + (1 - resultantTN / 100) * ScreenPadding..' '..anchorX..' '..anchorY..']'
+    end
+    bang = bang..'[!UpdateMeasure ActionTimer]'
+    SKIN:Bang(bang)
 end
 
 function actionLoad(type)
@@ -94,8 +124,6 @@ function actionLoad(type)
             SKIN:Bang('[!CommandMeasure "state'..currentPlayer..'" "next"]')
         elseif type == 'prev' then
             SKIN:Bang('[!CommandMeasure "state'..currentPlayer..'" "previous"]')
-        else
-            print('error:notypespecified')
         end
     else
         SKIN:Bang('[!HideMeterGroup Standard][!ShowMeterGroup '..type..'][!UpdateMeterGroup "Standard | '..type..'"][!Redraw]')
@@ -119,7 +147,6 @@ end
 -- -------------------------------------------------------------------------- --
 
 function checkMedia()
-    print('switching media...')
 
     if currentPlayer == nil then currentPlayer = SKIN:GetVariable('NowPlayingMedia') end
     if checkingPlayer == nil then checkingPlayer = 'AIMP' end

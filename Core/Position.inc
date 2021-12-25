@@ -34,20 +34,6 @@ Fill=Fill Color 100,100,100,200
 Container=ContentContainer
 Triangle=(26.5*[Set.S]),(20*[Set.S]) | LineTo (16.5*[Set.S]),(40*[Set.S]) | LineTo (36.5*[Set.S]),(40*[Set.S]) | ClosePath 1
 DirFill=Fill Color 12,12,12 | StrokeWidth 2 | Stroke Color #set.Accent_Color# | StrokeStartCap Round | StrokeEndCap Round
-[Sec.DirButton:S]
-X=((26+5)*[Set.S])r
-Y=r
-Shape=Rectangle 0,0,26,26,3 | StrokeWidth 0 | Extend Fill | Scale [Set.S],[Set.S],0,0
-Shape2=Path Arrow | StrokeWidth (2*[Set.S]) | StrokeStartCap Round | StrokeEndCap Round | Fill Color 0,0,0,1 | Stroke Color #Set.Text_Color# | Scale [Set.S],[Set.S],0,0 | Extend Rotation
-Arrow=8,6 | LineTo 18,12 | LineTo 8,18
-OverColor=[&Func:returnBool('AniDir', '#CURRENTSECTION#', '#Set.Accent_Color#', '#Set.Text_Color#')],200
-LeaveColor=[&Func:returnBool('AniDir', '#CURRENTSECTION#', '#Set.Accent_Color#', '#Set.Text_Color#')],150
-LeftMouseUpAction=[!WriteKeyValue Variables AniDir "#CURRENTSECTION#" #Sec.SaveLocation#][!SetVariable AniDir "#CURRENTSECTION#"][!UpdateMeasure Auto_Refresh:M][!UpdateMeter *][!Redraw]
-Fill=Fill Color [&Func:LocalVar('#CURRENTSECTION#', 'LeaveColor')]
-MouseOverAction=[!SetOption #CURRENTSECTION# Fill "Fill Color [&Func:LocalVar('#CURRENTSECTION#', 'OverColor')]"][!UpdateMeter #CURRENTSECTION#][!Redraw]
-MouseLeaveAction=[!SetOption #CURRENTSECTION# Fill "Fill Color [&Func:LocalVar('#CURRENTSECTION#', 'LeaveColor')]"][!UpdateMeter #CURRENTSECTION#][!Redraw]
-Container=ContentContainer
-DynamicVariables=1
 
 ; ---------------------------------------------------------------------------- ;
 ;                                    Content                                   ;
@@ -161,22 +147,6 @@ Meter=String
 Text=Monitor index
 MeterStyle=Set.String:S | Set.OptionName:S
 
-[HotkeysTitle3]
-Meter=String
-Text=Animation
-MeterStyle=Set.String:S | Set.OptionCat:S
-[Option21]
-Meter=String
-Text=Slide animations
-MeterStyle=Set.String:S | Set.OptionName:S
-[Set.Div:S12]
-Meter=Shape
-MeterStyle=Set.Div:S
-[Option22]
-Meter=String
-Text=Animation direction
-MeterStyle=Set.String:S | Set.OptionName:S
-
 ; ----------------------------------- Input ---------------------------------- ;
 
 [MonitorIndex]
@@ -188,25 +158,3 @@ Y=([Option11:Y]-#Set.P#+(-30/2+8)*[Set.S])
 Meter=String
 Text=#MonitorIndex#
 MeterStyle=Set.String:S | Set.Value:S
-
-[Ani]
-Meter=Shape
-MeterStyle=Set.Bool:S
-Y=([Option21:Y]-#Set.P#+(-20/2+8)*[Set.S])
-[Left]
-Meter=Shape
-X=(#Set.W#-#Set.L#-#Set.P#*2-((26*4+5*3)*[Set.S]))
-Y=([Option22:Y]-#Set.P#+(-26/2+8)*[Set.S])
-Rotation=Rotate 180
-MeterStyle=Sec.DirButton:S
-[Right]
-Meter=Shape
-MeterStyle=Sec.DirButton:S
-[Top]
-Meter=Shape
-Rotation=Rotate 270
-MeterStyle=Sec.DirButton:S
-[Bottom]
-Meter=Shape
-Rotation=Rotate 90
-MeterStyle=Sec.DirButton:S

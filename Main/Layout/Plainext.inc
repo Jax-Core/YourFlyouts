@@ -82,7 +82,7 @@ UpdateDivider=1
 LeftMouseUpAction=[!SetOption PosCalc Formula "($MouseX$/([#CURRENTSECTION#:W]-#P#)*100)"][!UpdateMeasure PosCalc]
 [PosCalc]
 Measure=calc
-OnUpdateAction=[!CommandMeasure state#NowPlayingMedia# "SetPosition [PosCalc]"]
+OnUpdateAction=[!CommandMeasure state#NowPlayingMedia# "SetPosition [PosCalc]"][!UpdateMeasure #PlayerType#Progress]
 Disabled=1
 DynamicVariables=1
 UpdateDivider=-1

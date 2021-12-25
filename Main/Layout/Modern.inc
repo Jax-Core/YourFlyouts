@@ -201,7 +201,7 @@ Group=Music | Standard
 Container=MediaC
 [PosCalc]
 Measure=calc
-OnUpdateAction=[!CommandMeasure state#NowPlayingMedia# "SetPosition [PosCalc]"]
+OnUpdateAction=[!CommandMeasure state#NowPlayingMedia# "SetPosition [PosCalc]"][!UpdateMeasure #PlayerType#Progress]
 Disabled=1
 DynamicVariables=1
 UpdateDivider=-1
