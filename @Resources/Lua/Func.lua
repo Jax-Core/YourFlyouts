@@ -45,7 +45,7 @@ function Initialize()
     -- --------------------------- handle media toggle -------------------------- --
 
     if tonumber(SKIN:GetVariable('Media')) == 1 then
-        SKIN:Bang('[!Delay 50][!CommandMeasure Func "checkMedia()"]')
+        SKIN:Bang('[!Delay 50][!CommandMeasure Func "checkMedia'..SKIN:GetVariable('MediaType')..'()"]')
         if tonumber(SKIN:GetVariable('FetchImage')) == 0 then
             SKIN:Bang('[!SetOptionGroup MediaImage UpdateDivider -1][!HideMeterGroup MediaImage][!SetOptionGroup MediaImage Group ""][!UpdateMeterGroup MediaImage]')
         end
@@ -146,43 +146,54 @@ end
 
 
 -- -------------------------------------------------------------------------- --
---                                 Media logic                                --
+--                                    Media                                   --
 -- -------------------------------------------------------------------------- --
 
-function checkMedia()
-
-    if currentPlayer == nil then currentPlayer = SKIN:GetVariable('NowPlayingMedia') end
-    if checkingPlayer == nil then checkingPlayer = 'AIMP' end
+function checkMediaAuto()
+    currentPlayer = nil
     for i = 1, 6 do
-        if SKIN:GetMeasure('state'..mediaPlayers[i]):GetValue() ~= 0 then
-            checkingPlayer = mediaPlayers[i]
+        if SKIN:GetMeasure('state'..mediaPlayers[i]):GetValue() == 1 then
+            currentPlayer = mediaPlayers[i]
             break
         end
     end
-    checkingPlayerState = SKIN:GetMeasure('state'..checkingPlayer):GetValue()
-
-    -- if currentPlayer ~= checkingPlayer then
-    if checkingPlayer == 'WebNowPlaying' then
-        SKIN:Bang('[!EnableMeasureGroup WNP][!DisableMeasureGroup NP]')
-        SKIN:Bang('[!SetVariable PlayerType WNP][!UpdateMeterGroup Music]')
-
-        if SKIN:GetVariable('FetchImage') == 0 then
-            SKIN:Bang('[!DisableMeasure wnpCover]')
-        end
-    else 
-        SKIN:Bang('[!EnableMeasureGroup NP][!DisableMeasureGroup WNP]')
-        SKIN:Bang('[!SetVariable PlayerType NP][!UpdateMeterGroup Music]')
-
-        if SKIN:GetVariable('FetchImage') == 0 then
-            SKIN:Bang('[!DisableMeasure npCover]')
+    if currentPlayer == nil then
+        for i = 1, 6 do
+            if SKIN:GetMeasure('state'..mediaPlayers[i]):GetValue() == 2 then
+                currentPlayer = mediaPlayers[i]
+                break
+            end
         end
     end
-    
+    if currentPlayer == nil then currentPlayer = SKIN:GetVariable('NowPlayingMedia') end
+
+    checkingPlayer = currentPlayer
+
+    checkingPlayerState = SKIN:GetMeasure('state'..checkingPlayer):GetValue()
+
+    -- print(checkingPlayer, checkingPlayerState)
+    if checkingPlayerState ~= 0 then
+        if checkingPlayer == 'WebNowPlaying' then
+            SKIN:Bang('[!EnableMeasureGroup WNP][!DisableMeasureGroup NP]')
+            SKIN:Bang('[!SetVariable PlayerType WNP]')
+
+            if SKIN:GetVariable('FetchImage') == 0 then
+                SKIN:Bang('[!DisableMeasure wnpCover]')
+            end
+        else 
+            SKIN:Bang('[!EnableMeasureGroup NP][!DisableMeasureGroup WNP]')
+            SKIN:Bang('[!SetVariable PlayerType NP]')
+
+            if SKIN:GetVariable('FetchImage') == 0 then
+                SKIN:Bang('[!DisableMeasure npCover]')
+            end
+        end
+    else
+        SKIN:Bang('[!DisableMeasureGroup NP][!DisableMeasureGroup WNP]')
+    end
+        
     SKIN:Bang('[!SetVariable NowPlayingMedia '..checkingPlayer..']')
     SKIN:Bang('[!UpdateMeasureGroup Music]')
-
-    currentPlayer = checkingPlayer
-
 
     if checkingPlayerState == 1 then SKIN:Bang('[!SetOption MediaPlayPause MeterStyle "Sec.BottomButton:S | Pause"][!UpdateMeter MediaPlayPause]')
     elseif checkingPlayerState == 2 then SKIN:Bang('[!SetOption MediaPlayPause MeterStyle "Sec.BottomButton:S | Play"][!UpdateMeter MediaPlayPause]')
@@ -190,15 +201,39 @@ function checkMedia()
     end
 
     if checkingPlayerState == 0 then
-        SKIN:Bang('[!HideMeterGroup Music][!UpdateMeterGroup Music]')
+        SKIN:Bang('[!HideMeterGroup Music]')
     else
-        SKIN:Bang('[!ShowMeterGroup Music][!UpdateMeterGroup Music]')
+        SKIN:Bang('[!ShowMeterGroup Music]')
     end
     
-    if tonumber(SKIN:GetVariable('mToggle')) ~= 0 then
-        SKIN:Bang('[!Redraw]')
-    end
+    SKIN:Bang('[!UpdateMeter *][!Redraw]')
 end
+
+
+function checkMediaModern()
+
+    checkingPlayerState = SKIN:GetMeasure('stateModern'):GetValue()
+
+    if SKIN:GetVariable('FetchImage') == 0 then
+        SKIN:Bang('[!DisableMeasure modernCover]')
+    end
+        
+    SKIN:Bang('[!UpdateMeasureGroup Music]')
+    
+    if checkingPlayerState == 1 then SKIN:Bang('[!SetOption MediaPlayPause MeterStyle "Sec.BottomButton:S | Pause"][!UpdateMeter MediaPlayPause]')
+    elseif checkingPlayerState == 2 then SKIN:Bang('[!SetOption MediaPlayPause MeterStyle "Sec.BottomButton:S | Play"][!UpdateMeter MediaPlayPause]')
+    elseif checkingPlayerState == 0 then SKIN:Bang('[!SetOption MediaPlayPause MeterStyle "Sec.BottomButton:S | Play"][!UpdateMeter MediaPlayPause]')
+    end
+
+    if checkingPlayerState == 0 then
+        SKIN:Bang('[!HideMeterGroup Music]')
+    else
+        SKIN:Bang('[!ShowMeterGroup Music]')
+    end
+    
+    SKIN:Bang('[!UpdateMeter *][!Redraw]')
+end
+
 
 -- -------------------------------------------------------------------------- --
 --                       Dropdown and utility functions                       --

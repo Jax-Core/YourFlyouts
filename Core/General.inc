@@ -76,14 +76,6 @@ Meter=Shape
 MeterStyle=Set.Div:S
 [Option12]
 Meter=String
-Text=Fetch media thumbnail
-FontColor=#Set.Text_Color#,(150+105*#Media#)
-MeterStyle=Set.String:S | Set.OptionName:S
-[Set.Div:S12391]
-Meter=Shape
-MeterStyle=Set.Div:S
-[Option13]
-Meter=String
 Text=CapsLock / NumLock / ScrollLock
 MeterStyle=Set.String:S | Set.OptionName:S
 
@@ -179,15 +171,10 @@ Hidden=(1-#OptionalKey#)
 Meter=Shape
 MeterStyle=Set.Bool:S
 Y=([Option11:Y]-#Set.P#+(-20/2+8)*[Set.S])
-[FetchImage]
-Meter=Shape
-MeterStyle=Set.Bool:S
-Y=([Option12:Y]-#Set.P#+(-20/2+8)*[Set.S])
-Hidden=(1-#Media#)
 [Locks]
 Meter=Shape
 MeterStyle=Set.Bool:S
-Y=([Option13:Y]-#Set.P#+(-20/2+8)*[Set.S])
+Y=([Option12:Y]-#Set.P#+(-20/2+8)*[Set.S])
 
 [SmartVolume]
 Meter=Shape

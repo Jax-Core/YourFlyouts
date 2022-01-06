@@ -1,12 +1,12 @@
-; ---------------------------------------------------------------------------- ;
-;                                      Gru                                     ;
-; ---------------------------------------------------------------------------- ;
+; ; ---------------------------------------------------------------------------- ;
+; ;                                      Gru                                     ;
+; ; ---------------------------------------------------------------------------- ;
 
 [stateAIMP]
 Measure=NowPlaying
 PlayerName=AIMP
 PlayerType=State
-OnChangeAction=[!CommandMeasure Func "checkMedia()"]
+OnChangeAction=[!CommandMeasure Func "checkMediaAuto()"]
 DynamicVariables=1
 UpdateDivider=1
 Group=MusicGru
@@ -15,7 +15,7 @@ Group=MusicGru
 Measure=NowPlaying
 PlayerName=CAD
 PlayerType=State
-OnChangeAction=[!CommandMeasure Func "checkMedia()"]
+OnChangeAction=[!CommandMeasure Func "checkMediaAuto()"]
 DynamicVariables=1
 UpdateDivider=1
 Group=MusicGru
@@ -24,7 +24,7 @@ Group=MusicGru
 Measure=NowPlaying
 PlayerName=WMP
 PlayerType=State
-OnChangeAction=[!CommandMeasure Func "checkMedia()"]
+OnChangeAction=[!CommandMeasure Func "checkMediaAuto()"]
 DynamicVariables=1
 UpdateDivider=1
 Group=MusicGru
@@ -33,7 +33,7 @@ Group=MusicGru
 Measure=NowPlaying
 PlayerName=iTunes
 PlayerType=State
-OnChangeAction=[!CommandMeasure Func "checkMedia()"]
+OnChangeAction=[!CommandMeasure Func "checkMediaAuto()"]
 DynamicVariables=1
 UpdateDivider=1
 Group=MusicGru
@@ -42,7 +42,7 @@ Group=MusicGru
 Measure=NowPlaying
 PlayerName=Winamp
 PlayerType=State
-OnChangeAction=[!CommandMeasure Func "checkMedia()"]
+OnChangeAction=[!CommandMeasure Func "checkMediaAuto()"]
 DynamicVariables=1
 UpdateDivider=1
 Group=MusicGru
@@ -51,16 +51,16 @@ Group=MusicGru
 Measure=Plugin
 Plugin=WebNowPlaying
 PlayerType=State
-OnChangeAction=[!CommandMeasure Func "checkMedia()"]
+OnChangeAction=[!CommandMeasure Func "checkMediaAuto()"]
 DynamicVariables=1
 UpdateDivider=1
 Group=MusicGru
 
-; ---------------------------------------------------------------------------- ;
-;                                    Minions                                   ;
-; ---------------------------------------------------------------------------- ;
+; ; ---------------------------------------------------------------------------- ;
+; ;                                    Minions                                   ;
+; ; ---------------------------------------------------------------------------- ;
 
-; ------------------------------------ NP ------------------------------------ ;
+; ; ------------------------------------ NP ------------------------------------ ;
 
 [npPlayer]
 Measure=String
@@ -84,7 +84,6 @@ Disabled=1
 Measure=NowPlaying
 PlayerName=[state#NowPlayingMedia#]
 PlayerType=Artist
-Substitute="":"Fetching..."
 UpdateDivider=1
 Group=Music | NP
 DynamicVariables=1
@@ -94,7 +93,7 @@ Disabled=1
 Measure=NowPlaying
 PlayerName=[state#NowPlayingMedia#]
 PlayerType=Title
-Substitute="":"Fetching..."
+OnChangeAction=[!UpdateMeterGroup Music][!Redraw]
 UpdateDivider=1
 Group=Music | NP
 DynamicVariables=1
@@ -127,6 +126,20 @@ UpdateDivider=1
 Group=Music | NP
 DynamicVariables=1
 Disabled=1
+
+; [npRepeat]
+; Measure=NowPlaying
+; PlayerName=[state#NowPlayingMedia#]
+; PlayerType=Repeat
+; IfCondition=npRepeat = 1
+; IfTrueAction=[!SetOption Repeat MeterStyle Repeat1][!UpdateMeter Repeat][!Redraw]
+; IfCondition2=npRepeat = 2
+; IfTrueAction2=[!SetOption Repeat MeterStyle Repeat2][!UpdateMeter Repeat][!Redraw]
+; IfCondition3=npRepeat = 0
+; IfTrueAction3=[!SetOption Repeat MeterStyle Repeat0][!UpdateMeter Repeat][!Redraw]
+; UpdateDivider=1
+; Group=Music | NP
+; Disabled=1
 
 [npShuffle]
 Measure=NowPlaying
@@ -176,9 +189,7 @@ Disabled=1
 [wnpArtist]
 Measure=Plugin
 Plugin=WebNowPlaying
-OnchangeAction=[!UpdateMeasureGroup Music][!UpdateMeterGroup Music][!Redraw]
 PlayerType=Artist
-Substitute="":"Fetching..."
 UpdateDivider=1
 Group=Music | WNP
 Disabled=1
@@ -188,7 +199,6 @@ Measure=Plugin
 Plugin=WebNowPlaying
 PlayerType=Title
 OnChangeAction=[!UpdateMeterGroup Music][!Redraw]
-Substitute="":"Fetching..."
 UpdateDivider=1
 Group=Music | WNP
 Disabled=1
@@ -217,6 +227,20 @@ PlayerType=Duration
 UpdateDivider=1
 Group=Music | WNP
 Disabled=1
+
+; [wnpRepeat]
+; Measure=Plugin
+; Plugin=WebNowPlaying
+; PlayerType=Repeat
+; IfCondition=wnpRepeat = 1
+; IfTrueAction=[!SetOption Repeat MeterStyle Repeat1][!UpdateMeter Repeat][!Redraw]
+; IfCondition2=wnpRepeat = 2
+; IfTrueAction2=[!SetOption Repeat MeterStyle Repeat2][!UpdateMeter Repeat][!Redraw]
+; IfCondition3=wnpRepeat = 0
+; IfTrueAction3=[!SetOption Repeat MeterStyle Repeat0][!UpdateMeter Repeat][!Redraw]
+; UpdateDivider=1
+; Group=Music | WNP
+; Disabled=1
 
 [wnpShuffle]
 Measure=Plugin
