@@ -1,9 +1,12 @@
 [Variables]
 H=(#Height#*#scale#)
-VolumeW=(#H#)
+VolumeW=(50*#Scale#)
 MediaW=(470*#Scale#)
 LocksW=(#H#)
 P=(20*#Scale#)
+
+SliderM=#P#
+SliderW=(#H#-#P#-40*#Scale#)
 
 ; ---------------------------------------------------------------------------- ;
 ;                                   Function                                   ;
@@ -25,6 +28,25 @@ OnChangeAction=[!UpdateMeterGroup Dynamic][!Redraw]
 ; IfTrueAction4=[!SetOption VolumeIcon Text "[\xE995]"]
 UpdateDivider=1
 
+[SliderPercent]
+Measure=Calc
+Formula=(100-(#SliderX#-(#SliderM#))*100/(((#SliderM#)+#SliderW#)-(#SliderM#)))
+OnUpdateAction=[!CommandMeasure "mVolume" "SetVolume [#CURRENTSECTION#]"][!UpdateMeasure mVolume]
+DynamicVariables=1
+Disabled=1
+Group=NUOL
+
+[VolumeMouse]
+Measure=Plugin
+Plugin=Mouse
+LeftMouseDragAction=[!SetVariable SliderX "(Clamp(($MouseY$),(#SliderM#),((#SliderM#)+#SliderW#)))"][!UpdateMeasure SliderPercent]
+; actions to be executed when the mouse drags. The first bang gets the mouse value and make sure it's in the slider. The bangs after that updates the required measures and the slider.
+LeftMouseUpAction=[!SetVariable SliderX "(Clamp(($MouseY$),(#SliderM#),((#SliderM#)+#SliderW#)))"][!UpdateMeasure SliderPercent][!CommandMeasure VolumeMouse "Stop"]
+; actions to be executed after the mouse click is lifted. The first bang stops the measure to retrieve information from mouse dragging.
+RelativeToSkin=1
+RequireDragging=1
+DynamicVariables=1
+
 
 ; --------------------------------- VolumeBar -------------------------------- ;
 
@@ -43,50 +65,31 @@ Y=r
 Shape=Rectangle 0,0,#VolumeW#,#H#,#R# | StrokeWidth 0
 Group=Standard
 
-[RoundLineBehind]
-Meter=RoundLine
-X=#P#
-Y=#P#
-W=(#H#-2*#P#)
-H=(#H#-2*#P#)
-StartAngle=4.712
-RotationAngle=6.283
-LineLength=((#H#-2*#P#)/2)
-LineStart=((#H#-2*#P#)/2-2*#scale#)
-LineColor=#FontColor2#
-Solid=1
-AntiAlias=1
-Container=VolumeC
-[RoundLine]
-Meter=RoundLine
-MeasureName=mVolume
-X=#P#
-Y=#P#
-W=(#H#-2*#P#)
-H=(#H#-2*#P#)
-StartAngle=4.712
-RotationAngle=6.283
-LineLength=((#H#-2*#P#)/2)
-LineStart=((#H#-2*#P#)/2-4*#scale#)
-LineColor=#AccentColor1#
-Solid=1
-AntiAlias=1
-Group=Dynamic
+[VolumeBar]
+Meter=Shape
+X=(#VolumeW#/2)
+Y=(#SliderM#)
+Shape=Line 0,#SliderW#,0,0 | StrokeWidth 2 | Fill Color 0,0,0,1 | Stroke Color #FontColor#,50 | StrokeStartCap #Cap# | StrokeEndCap #Cap#
+Shape2=Line 0,#SliderW#,0,(#SliderW#*(1-[mVolume:]/100)) | StrokeWidth 4 ==| Fill Color 0,0,0,1 | Stroke LinearGradient This | StrokeStartCap #Cap# | StrokeEndCap #Cap#
+This=270 | #AccentCOlor1# ; 0.0 | #AccentColor2# ; 1.0
+LeftMouseDownAction=[!CommandMeasure VolumeMouse "Start"]
+DynamicVariables=1
+Group=Dynamic | Standard
 Container=VolumeC
 
 [VolumeString]
 Meter=String
 MeterStyle=String:S
-X=(#H#/2)
-Y=(#H#/2)
-StringAlign=CenterCenter
+X=(#VolumeW#/2)
+Y=(#H#-#P#/2)
+StringAlign=CenterBottom
 FontWeight=650
-FontSize=(20*#scale#)
+FontSize=(10*#scale#)
 Text=[mVolume:]
 DynamicVariables=1
 Group=Dynamic | Standard
 Container=VolumeC
-FontFace=#FontFace2#
+FontFace=#FontFace#
 
 ; --------------------------------- Media -------------------------------- ;
 
@@ -223,3 +226,58 @@ Disabled=1
 DynamicVariables=1
 UpdateDivider=-1
 Group=NUOL
+
+[MediaHeart]
+Meter=String
+[MediaShuffle]
+Meter=String
+
+; ---------------------------------------------------------------------------- ;
+;                                    Special                                   ;
+; ---------------------------------------------------------------------------- ;
+
+; ----------------------------------- Caps ----------------------------------- ;
+
+[LocksB]
+Meter=Shape
+X=1
+Y=1
+Shape=Rectangle 0,0,#LocksW#,#H#,#R# | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,#PrimaryOpacity# | Stroke Color #SecondaryColor#,#SecondaryOpacity#
+Group=Locks | Special
+Hidden=1
+[LocksC]
+Meter=Shape
+X=r
+Y=r
+Shape=Rectangle 0,0,#LocksW#,#H#,#R# | StrokeWidth 0
+Group=Locks | Special
+Hidden=1
+
+
+
+[LocksIcon]
+Meter=String
+MeterStyle=String:S
+X=(#Locksw#/2)
+Y=(#Locksw#/2)
+Text=[\xe835]
+FontFace=Material Icons Round
+StringAlign=CenterCenter
+FontSize=(32*#scale#)
+Group=Locks | Special
+InlineSetting=Shadow | 0 | 0 | 10 | 0,0,0,150
+Container=LocksC
+Hidden=1
+[LocksText]
+Meter=String
+MeterStyle=String:S
+X=r
+Y=(#P#*2)r
+W=(#LocksW#)
+StringAlign=Center
+ClipString=2
+FontSize=(8*#scale#)
+Fontcolor=#FontColor2#
+Group=Locks | Special
+Container=LocksC
+Hidden=1

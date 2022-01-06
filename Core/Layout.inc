@@ -1,7 +1,7 @@
 [Option01]
 Meter=String
 X=r
-Text=Select a layout, this will change your base settings that are no attached to the layout.
+Text=Select a layout, this will change your base settings that are not attached to the layout.
 MeterStyle=Set.String:S | Set.OptionName:S
 
 ; ---------------------------------------------------------------------------- ;
@@ -21,7 +21,7 @@ DynamicVariables=1
 ImageAlpha=200
 MouseOverAction=[!SetOption #CURRENTSECTION# ImageAlpha "255"][!UpdateMeter #CURRENTSECTION#][!Redraw]
 MouseLeaveAction=[!SetOption #CURRENTSECTION# ImageAlpha "200"][!UpdateMeter #CURRENTSECTION#][!Redraw]
-Leftmouseupaction=[!WriteKeyvalue Variables Layout #CURRENTSECTION# "#Sec.SaveLocation#"][!UpdateMeasure Auto_Refresh:M][!Refresh]
+Leftmouseupaction=[!CommandMeasure Preset:M "ChangeTo('#CURRENTSECTION#')"][!UpdateMeasure Auto_Refresh:M][!Refresh]
 DynamicVariables=1
 MaskImageName=#SKINSPATH##Skin.Name#\Core\Layout\Mask.png
 Container=ContentContainer
@@ -53,5 +53,15 @@ Y=(20*[Set.S])R
 MeterStyle=Select:S
 
 [Plainext]
+Meter=Image
+MeterStyle=Select:S
+
+[Simple]
+Meter=Image
+X=(20*[Set.S])
+Y=(20*[Set.S])R
+MeterStyle=Select:S
+
+[center]
 Meter=Image
 MeterStyle=Select:S

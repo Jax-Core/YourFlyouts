@@ -5,7 +5,6 @@ R=8
 FontFace=Open Sans
 FontFace2=Bebas Kai
 Stroke=0
-Dotsize=10
 Cap=Round
 
 PrimaryColor=12,12,12

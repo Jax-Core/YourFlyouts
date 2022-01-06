@@ -77,6 +77,14 @@ function Initialize()
 
 end
 
+function saveLocation()
+    local pos = SKIN:GetVariable('Position')
+    moveX = tonumber(SKIN:GetX())
+    moveY = tonumber(SKIN:GetY())
+    anchorX = 0
+    anchorY = 0
+end
+
 function tweenAnimation(dir)
     if dir == 'in' then 
         local complete = t:update(1)
@@ -106,7 +114,16 @@ function actionLoad(type)
         end
     end
     if type ~= 'Locks' then
-        SKIN:Bang('[!HideMeterGroup Special][!ShowMeterGroup Standard]')
+
+        SKIN:Bang('[!HideMeterGroup Special]')
+        if SKIN:GetVariable('SeparateMedia') ~= nil and type ~= 'up' and type ~= 'down' and type ~= nil then
+            SKIN:Bang('[!HideMeterGroup Standard][!ShowMeterGroup Music]')
+        elseif SKIN:GetVariable('SeparateMedia') ~= nil then
+            SKIN:Bang('[!ShowMeterGroup Standard][!HideMeterGroup Music]')
+        else
+            SKIN:Bang('[!ShowMeterGroup Standard]')
+        end
+        
         if checkingPlayerState == 0 then
             SKIN:Bang('[!HideMeterGroup Music]')
         end
@@ -211,6 +228,7 @@ end
 
 
 function checkMediaModern()
+    currentPlayer = 'Modern'
 
     checkingPlayerState = SKIN:GetMeasure('stateModern'):GetValue()
 
@@ -290,15 +308,22 @@ function checkEscape(char)
 end
 
 function returnBool(String, Match, ReturnStringT, ReturnStringF)
-	local function startswith(text, prefix)
-		return text:find(prefix, 1, true) == 1
-	end
-
-	ReturnStringT = ReturnStringT or '1'
-	ReturnStringF = ReturnStringF or '0'
+	local ReturnStringT = ReturnStringT or '1'
+	local ReturnStringF = ReturnStringF or '0'
 	if string.find(String, Match) then
 		return(ReturnStringT)
 	  else
 		return(ReturnStringF)
 	end
+end
+
+function returnCorner()
+    local BlurCorner = SKIN:GetVariable('BlurCorner')
+    if BlurCorner == 'Round' then
+        return 8
+    elseif BlurCorner == 'RoundSmall' then
+        return 4
+    else
+        return 0
+    end
 end
