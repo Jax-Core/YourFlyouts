@@ -72,7 +72,7 @@ Disabled=1
 
 [npCover]
 Measure=NowPlaying
-PlayerName=#NowPlayingMedia#
+PlayerName=[state#NowPlayingMedia#]
 PlayerType=Cover
 Substitute="":"#@#Images\Default.png"
 UpdateDivider=1
@@ -82,7 +82,7 @@ Disabled=1
 
 [npArtist]
 Measure=NowPlaying
-PlayerName=#NowPlayingMedia#
+PlayerName=[state#NowPlayingMedia#]
 PlayerType=Artist
 Substitute="":"Fetching..."
 UpdateDivider=1
@@ -92,7 +92,7 @@ Disabled=1
 
 [npTrack]
 Measure=NowPlaying
-PlayerName=#NowPlayingMedia#
+PlayerName=[state#NowPlayingMedia#]
 PlayerType=Title
 Substitute="":"Fetching..."
 UpdateDivider=1
@@ -102,7 +102,7 @@ Disabled=1
 
 [npProgress]
 Measure=NowPlaying
-PlayerName=#NowPlayingMedia#
+PlayerName=[state#NowPlayingMedia#]
 PlayerType=Progress
 Substitute="NaN":"1"
 UpdateDivider=1
@@ -112,7 +112,7 @@ Disabled=1
 
 [npCurrentPosition]
 Measure=NowPlaying
-PlayerName=#NowPlayingMedia#
+PlayerName=[state#NowPlayingMedia#]
 PlayerType=Position
 UpdateDivider=1
 Group=Music | NP
@@ -121,7 +121,7 @@ Disabled=1
 
 [npLength]
 Measure=NowPlaying
-PlayerName=#NowPlayingMedia#
+PlayerName=[state#NowPlayingMedia#]
 PlayerType=Duration
 UpdateDivider=1
 Group=Music | NP
@@ -130,7 +130,7 @@ Disabled=1
 
 [npShuffle]
 Measure=NowPlaying
-PlayerName=#NowPlayingMedia#
+PlayerName=[state#NowPlayingMedia#]
 PlayerType=Shuffle
 IfCondition=npShuffle = 0
 IfTrueAction=[!SetOption MediaShuffle MeterStyle "Sec.BottomButton:S | Shuffle0"][!UpdateMeter MediaShuffle][!Redraw]
@@ -142,7 +142,7 @@ Disabled=1
 
 [npHeart]
 Measure=NowPlaying
-PlayerName=#NowPlayingMedia#
+PlayerName=[state#NowPlayingMedia#]
 PlayerType=Rating
 IfCondition=npHeart = 0
 IfTrueAction=[!SetOption MediaHeart MeterStyle "Sec.BottomButton:S | EmptyHeart"][!UpdateMeter MediaHeart][!Redraw]
@@ -158,8 +158,6 @@ Disabled=1
 Measure=Plugin
 Plugin=WebNowPlaying
 PlayerType=Player
-Substitute="^\s*":""
-RegExpSubstitute=1
 UpdateDivider=1
 Group=Music | WNP
 Disabled=1

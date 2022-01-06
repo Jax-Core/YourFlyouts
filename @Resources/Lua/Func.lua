@@ -118,12 +118,15 @@ function actionLoad(type)
             SKIN:Bang('[!CommandMeasure "mVolume" "ChangeVolume #MediaKeyChange#"][!UpdateMeasure mVolume]')
         elseif type == 'down' then
             SKIN:Bang('[!CommandMeasure "mVolume" "ChangeVolume -#MediaKeyChange#"][!UpdateMeasure mVolume]')
-        elseif type == 'pause' then
-            SKIN:Bang('[!CommandMeasure "state'..currentPlayer..'" "PlayPause"]')
-        elseif type == 'next' then
-            SKIN:Bang('[!CommandMeasure "state'..currentPlayer..'" "next"]')
-        elseif type == 'prev' then
-            SKIN:Bang('[!CommandMeasure "state'..currentPlayer..'" "previous"]')
+        end
+        if tonumber(SKIN:GetVariable('OverrideNativeKeyFunction')) == 1 then
+            if type == 'pause' then
+                SKIN:Bang('[!CommandMeasure "state'..currentPlayer..'" "PlayPause"]')
+            elseif type == 'next' then
+                SKIN:Bang('[!CommandMeasure "state'..currentPlayer..'" "next"]')
+            elseif type == 'prev' then
+                SKIN:Bang('[!CommandMeasure "state'..currentPlayer..'" "previous"]')
+            end
         end
     else
         SKIN:Bang('[!HideMeterGroup Standard][!ShowMeterGroup '..type..'][!UpdateMeterGroup "Standard | '..type..'"][!Redraw]')

@@ -7,15 +7,25 @@ numberkeys := 0
 IniRead, OutputVar, Hotkeys.ini, Variables, Key
 IniRead, RainmeterPath, Hotkeys.ini, Variables, RMPATH
 IniRead, Media, ..\Vars.inc, Variables, Media
+IniRead, OverrideNativeKeyFunction, ..\Vars.inc, Variables, OverrideNativeKeyFunction
 IniRead, MediaKeys, ..\Vars.inc, Variables, MediaKeys
 IniRead, OptionalKey, ..\Vars.inc, Variables, OptionalKey
 IniRead, SmartVolume, ..\Vars.inc, Variables, SmartVolume
 
 if (Media = 1) and (MediaKeys = 1)
 {
-    Hotkey Media_Play_Pause, actionPause
-    Hotkey Media_Next, actionNext
-    Hotkey Media_Prev, actionPrev
+    if (OverrideNativeKeyFunction = 1)
+    {
+        Hotkey Media_Play_Pause, actionPause
+        Hotkey Media_Next, actionNext
+        Hotkey Media_Prev, actionPrev
+    }
+    else
+    {
+        Hotkey ~Media_Play_Pause, actionPause
+        Hotkey ~Media_Next, actionNext
+        Hotkey ~Media_Prev, actionPrev
+    }
 }
 if (OptionalKey = 1)
 {

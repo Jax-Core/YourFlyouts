@@ -43,12 +43,19 @@ Meter=Shape
 MeterStyle=Set.Div:S
 [Option03]
 Meter=String
+Text=Override native media key functions
+MeterStyle=Set.String:S | Set.OptionName:S
+[Set.Div:224123]
+Meter=Shape
+MeterStyle=Set.Div:S
+[Option04]
+Meter=String
 Text=Activate flyouts with a hotkey
 MeterStyle=Set.String:S | Set.OptionName:S
 [Set.Div:22143]
 Meter=Shape
 MeterStyle=Set.Div:S
-[Option04]
+[Option05]
 Meter=String
 Text=Activation hotkey
 FontColor=#Set.Text_Color#,(150+105*#OptionalKey#)
@@ -148,14 +155,18 @@ MeterStyle=Set.String:S | Set.Value:S
 Meter=Shape
 MeterStyle=Set.Bool:S
 Y=([Option02:Y]-#Set.P#+(-20/2+8)*[Set.S])
-[OptionalKey]
+[OverrideNativeKeyFunction]
 Meter=Shape
 MeterStyle=Set.Bool:S
 Y=([Option03:Y]-#Set.P#+(-20/2+8)*[Set.S])
+[OptionalKey]
+Meter=Shape
+MeterStyle=Set.Bool:S
+Y=([Option04:Y]-#Set.P#+(-20/2+8)*[Set.S])
 [Button04]
 Meter=Shape
 MeterStyle=Set.Button:S
-Y=([Option04:Y]-#Set.P#+(-30/2+8)*[Set.S])
+Y=([Option05:Y]-#Set.P#+(-30/2+8)*[Set.S])
 Act=[!CommandMeasure Func "startSide('Hotkey')"]
 Hidden=(1-#OptionalKey#)
 [Value04]

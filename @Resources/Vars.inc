@@ -2,6 +2,7 @@
 Media=1
 MediaKeys=1
 OptionalKey=1
+OverrideNativeKeyFunction=1
 SmartVolume=1
 FetchImage=1
 Locks=1
