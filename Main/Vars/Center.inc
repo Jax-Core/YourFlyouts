@@ -3,9 +3,10 @@ Height=150
 
 FontFace=SF Pro Rounded
 Stroke=1
+CircRadius=(50*#scale#)
 
-PrimaryColor=255,255,255
-PrimaryOpacity=0
+PrimaryColor=36,36,36
+PrimaryOpacity=175
 BorderColor=255,255,255
 BorderOpacity=25
 FontColor=255,255,255
@@ -16,4 +17,4 @@ MediaImageOpacity=25
 Blur=Blur
 BlurCorner=Round
 
-Scale=1
+Scale=1.5

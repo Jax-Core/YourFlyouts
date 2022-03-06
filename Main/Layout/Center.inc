@@ -78,6 +78,10 @@ Container=VolumeC
 InlineSetting=Shadow | 0 | 0 | 5 | #GlowColor#,#GlowOpacity#
 FontFace=#FontFace#
 
+; ---------------------------------------------------------------------------- ;
+;                                  End of port                                 ;
+; ---------------------------------------------------------------------------- ;
+
 ; ; --------------------------------- Media -------------------------------- ;
 
 [MediaB]
@@ -118,7 +122,7 @@ MeterStyle=String:S
 X=(#MediaW#/2)
 Y=#P#
 W=(#MediaW#-#P#*2)
-FontSize=(14*#scale#)
+FontSize=(Clamp(14*#scale#, 0, 14))
 ClipString=1
 StringAlign=Center
 Text=[#PlayerType#Track]
@@ -131,7 +135,7 @@ MeterStyle=String:S
 X=r
 Y=(#P#/2)R
 W=(#MediaW#-#P#*2)
-FontSize=(10*#scale#)
+FontSize=(Clamp(10*#scale#, 0, 10))
 ClipString=1
 StringAlign=Center
 Text=[#PlayerType#Artist]

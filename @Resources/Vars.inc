@@ -17,8 +17,8 @@ Easetype=OutQuart
 Timeout=1
 MediaKeyChange=5
 
-Position=CC
+Position=TL
 MonitorIndex=1
 ScreenPadding=30
 
-Layout=Center
+Layout=Modern

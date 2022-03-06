@@ -95,7 +95,7 @@ FontFace=#FontFace#
 
 [MediaB]
 Meter=Shape
-X=#P#R
+X=(#P#/2)R
 Y=r
 Shape=Rectangle 0,0,#MediaW#,#H#,#R# | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,#PrimaryOpacity#
 Group=Music | Standard
@@ -111,7 +111,7 @@ Meter=String
 MeterStyle=String:S
 X=#P#
 Y=(20*#scale#)r
-W=(#MediaW#-#P#*2)
+W=(#MediaW#-150*#scale#)
 FontSize=(20*#scale#)
 ClipString=1
 Text=[#PlayerType#Track]
@@ -124,7 +124,7 @@ Meter=String
 MeterStyle=String:S
 X=r
 Y=R
-W=(#MediaW#-#P#*2)
+W=(#MediaW#-150*#scale#)
 FontSize=(10*#scale#)
 ClipString=1
 Text=[#PlayerType#Artist]

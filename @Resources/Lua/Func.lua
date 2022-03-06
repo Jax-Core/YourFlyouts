@@ -20,7 +20,7 @@ function Initialize()
         anchorX = 0
         anchorY = 0
         
-        if posX == 'L' then moveX = pad
+        if posX == 'L' then moveX = sax + pad
         elseif posX == 'C' then
             moveX = (sax + saw/2)
             anchorX = "50%"
@@ -29,7 +29,7 @@ function Initialize()
             anchorX = "100%"
         end
         
-        if posY == 'T' then moveY = pad
+        if posY == 'T' then moveY = say + pad
         elseif posY == 'C' then
             moveY = (say + sah/2)
             anchorY = "50%"
@@ -135,6 +135,8 @@ function actionLoad(type)
             SKIN:Bang('[!CommandMeasure "mVolume" "ChangeVolume #MediaKeyChange#"][!UpdateMeasure mVolume]')
         elseif type == 'down' then
             SKIN:Bang('[!CommandMeasure "mVolume" "ChangeVolume -#MediaKeyChange#"][!UpdateMeasure mVolume]')
+        elseif type == 'mute' then
+            SKIN:Bang('[!CommandMeasure "mVolume" "ToggleMute"][!UpdateMeasure mVolume]')
         end
         if tonumber(SKIN:GetVariable('OverrideNativeKeyFunction')) == 1 then
             if type == 'pause' then
