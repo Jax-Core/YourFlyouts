@@ -8,6 +8,8 @@ P=(20*#Scale#)
 SliderM=(#P#+8*#scale#)
 SliderW=(#H#-#P#*2-(30+8*2)*#Scale#)
 
+MHC_Reset=[!SetOption MediaHoverCircle Stroke "Stroke Color #FontColor#,20"][!UpdateMeter MediaHoverCircle][!Redraw]
+
 [Sec.BottomButton:S]
 X=(#P#*2)R
 Y=r
@@ -18,6 +20,9 @@ ImageTint=#FontColor#
 DynamicVariables=1
 Group=Music | Standard
 Container=MediaC
+MouseOverAction=[!SetOption MediaHoverCircle X "([#CURRENTSECTION#:X]-#VolumeW#)"][!SetOption MediaHoverCircle Y "([#CURRENTSECTION#:Y])"][!ShowMeter MediaHoverCircle][!UpdateMeter MediaHoverCircle][!Redraw]
+MouseLeaveAction=[!HideMeter MediaHoverCircle][!Redraw]
+LeftMouseDownAction=[!SetOption MediaHoverCircle Stroke "Stroke Color #FontColor#,150"][!UpdateMeter MediaHoverCircle][!Redraw]
 
 ; ---------------------------------------------------------------------------- ;
 ;                                   Function                                   ;
@@ -181,16 +186,16 @@ ImageName=#@#Icons\FluentShuffle.png
 MeterStyle=Sec.BottomButton:S
 [Shuffle0]
 ImageAlpha=150
-LeftMouseUpAction=[!SetOption MediaShuffle MeterStyle "Sec.BottomButton:S | Shuffle1"][!UpdateMeter MediaShuffle][!Redraw][!CommandMeasure state#NowPlayingMedia# "Shuffle"]
+LeftMouseUpAction=[!SetOption MediaShuffle MeterStyle "Sec.BottomButton:S | Shuffle1"][!UpdateMeter MediaShuffle]#MHC_Reset#[!CommandMeasure state#NowPlayingMedia# "Shuffle"]
 [Shuffle1]
 ImageAlpha=255
-LeftMouseUpAction=[!SetOption MediaShuffle MeterStyle "Sec.BottomButton:S | Shuffle0"][!UpdateMeter MediaShuffle][!Redraw][!CommandMeasure state#NowPlayingMedia# "Shuffle"]
+LeftMouseUpAction=[!SetOption MediaShuffle MeterStyle "Sec.BottomButton:S | Shuffle0"][!UpdateMeter MediaShuffle]#MHC_Reset#[!CommandMeasure state#NowPlayingMedia# "Shuffle"]
 
 
 [MediaPrev]
 Meter=Image
 ImageName=#@#Icons\FluentPrevious.png
-LeftMouseUpAction=[!CommandMeasure state#NowPlayingMedia# "Previous"]
+LeftMouseUpAction=[!CommandMeasure state#NowPlayingMedia# "Previous"]#MHC_Reset#
 MeterStyle=Sec.BottomButton:S
 
 [MediaPlayPause]
@@ -198,21 +203,21 @@ Meter=Image
 MeterStyle=Sec.BottomButton:S
 [Play]
 ImageName=#@#Icons\FluentPlay.png
-LeftMouseUpAction=[!SetOption MediaPlayPause MeterStyle "Sec.BottomButton:S | Pause"][!UpdateMeter MediaPlayPause][!Redraw][!CommandMeasure state#NowPlayingMedia# "PlayPause"]
+LeftMouseUpAction=[!SetOption MediaPlayPause MeterStyle "Sec.BottomButton:S | Pause"][!UpdateMeter MediaPlayPause]#MHC_Reset#[!CommandMeasure state#NowPlayingMedia# "PlayPause"]
 [Pause]
 ImageName=#@#Icons\FluentPause.png
-LeftMouseUpAction=[!SetOption MediaPlayPause MeterStyle "Sec.BottomButton:S | Play"][!UpdateMeter MediaPlayPause][!Redraw][!CommandMeasure state#NowPlayingMedia# "PlayPause"]
+LeftMouseUpAction=[!SetOption MediaPlayPause MeterStyle "Sec.BottomButton:S | Play"][!UpdateMeter MediaPlayPause]#MHC_Reset#[!CommandMeasure state#NowPlayingMedia# "PlayPause"]
 
 [MediaNext]
 Meter=Image
 ImageName=#@#Icons\FluentNext.png
-LeftMouseUpAction=[!CommandMeasure state#NowPlayingMedia# "Next"]
+LeftMouseUpAction=[!CommandMeasure state#NowPlayingMedia# "Next"]#MHC_Reset#
 MeterStyle=Sec.BottomButton:S
 
 [MediaRepeat]
 Meter=Image
 MeterStyle=Sec.BottomButton:S
-LeftMouseUpAction=[!CommandMeasure state#NowPlayingMedia# "Repeat"]
+LeftMouseUpAction=[!CommandMeasure state#NowPlayingMedia# "Repeat"]#MHC_Reset#
 [Repeat0]
 ImageAlpha=150
 ImageName=#@#Icons\FluentRepeat.png
@@ -223,6 +228,13 @@ ImageName=#@#Icons\FluentRepeat2.png
 
 [MediaHeart]
 Meter=String
+
+[MediaHoverCircle]
+Meter=Shape
+Shape=Ellipse (10*#scale#),(10*#scale#),(20*#Scale#) | StrokeWidth 1 | Fill Color 0,0,0,0 | Extend Stroke
+Stroke=Stroke Color #FontColor#,20
+Container=MediaC
+Hidden=1
 
 ; ------------------------------------ Bar ----------------------------------- ;
 

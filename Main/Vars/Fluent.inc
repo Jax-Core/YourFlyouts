@@ -7,7 +7,7 @@ Stroke=0
 Cap=Round
 
 PrimaryColor=12,12,12
-PrimaryOpacity=150
+PrimaryOpacity=175
 FontColor=255,255,255
 FontColor2=150,150,150
 AccentColor=134, 10, 13
