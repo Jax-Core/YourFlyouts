@@ -36,17 +36,17 @@ LeftMouseUpAction=
 ; ---------------------------------------------------------------------------- ;
 
 
-[CoreUI]
+[Modern]
 Meter=Image
 X=r
 Y=(30*[Set.S])R
 MeterStyle=Select:S
 
-[Side]
+[Simple]
 Meter=Image
 MeterStyle=Select:S
 
-[Modern]
+[Fluent]
 Meter=Image
 X=(20*[Set.S])
 Y=(20*[Set.S])R
@@ -56,12 +56,18 @@ MeterStyle=Select:S
 Meter=Image
 MeterStyle=Select:S
 
-[Simple]
+[Center]
 Meter=Image
 X=(20*[Set.S])
 Y=(20*[Set.S])R
 MeterStyle=Select:S
 
-[center]
+[CoreUI]
 Meter=Image
+MeterStyle=Select:S
+
+[side]
+Meter=Image
+X=(20*[Set.S])
+Y=(20*[Set.S])R
 MeterStyle=Select:S

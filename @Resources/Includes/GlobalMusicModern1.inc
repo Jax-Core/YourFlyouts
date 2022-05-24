@@ -24,6 +24,7 @@ Group=MusicGru
 Measure=String
 String=MediaPlayerDLL
 UpdateDivider=-1
+Substitute="^\s":""
 Group=Music | modern
 DynamicVariables=1
 
@@ -85,18 +86,18 @@ Group=Music | modern
 DynamicVariables=1
 
 
-; [modernRepeat]
-; Measure=Plugin
-; Plugin=MediaPlayer.dll
-; PlayerType=Repeat
-; IfCondition=modernRepeat = 1
-; IfTrueAction=[!SetOption Repeat MeterStyle Repeat1][!UpdateMeter Repeat][!Redraw]
-; IfCondition2=modernRepeat = 2
-; IfTrueAction2=[!SetOption Repeat MeterStyle Repeat2][!UpdateMeter Repeat][!Redraw]
-; IfCondition3=modernRepeat = 0
-; IfTrueAction3=[!SetOption Repeat MeterStyle Repeat0][!UpdateMeter Repeat][!Redraw]
-; UpdateDivider=1
-; Group=Music | modern
+[modernRepeat]
+Measure=Plugin
+Plugin=MediaPlayer.dll
+PlayerType=Repeat
+IfCondition=modernRepeat = 1
+IfTrueAction=[!SetOption MediaRepeat MeterStyle "Sec.BottomButton:S | Repeat1"][!UpdateMeter MediaRepeat][!Redraw]
+IfCondition2=modernRepeat = 2
+IfTrueAction2=[!SetOption MediaRepeat MeterStyle "Sec.BottomButton:S | Repeat2"][!UpdateMeter MediaRepeat][!Redraw]
+IfCondition3=modernRepeat = 0
+IfTrueAction3=[!SetOption MediaRepeat MeterStyle "Sec.BottomButton:S | Repeat0"][!UpdateMeter MediaRepeat][!Redraw]
+UpdateDivider=1
+Group=Music | modern
 
 
 [modernShuffle]

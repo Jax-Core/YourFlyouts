@@ -67,6 +67,7 @@ Measure=String
 String=#NowPlayingMedia#
 UpdateDivider=-1
 Group=Music | NP
+Substitute="^\s":""
 DynamicVariables=1
 Disabled=1
 
@@ -127,19 +128,19 @@ Group=Music | NP
 DynamicVariables=1
 Disabled=1
 
-; [npRepeat]
-; Measure=NowPlaying
-; PlayerName=[state#NowPlayingMedia#]
-; PlayerType=Repeat
-; IfCondition=npRepeat = 1
-; IfTrueAction=[!SetOption Repeat MeterStyle Repeat1][!UpdateMeter Repeat][!Redraw]
-; IfCondition2=npRepeat = 2
-; IfTrueAction2=[!SetOption Repeat MeterStyle Repeat2][!UpdateMeter Repeat][!Redraw]
-; IfCondition3=npRepeat = 0
-; IfTrueAction3=[!SetOption Repeat MeterStyle Repeat0][!UpdateMeter Repeat][!Redraw]
-; UpdateDivider=1
-; Group=Music | NP
-; Disabled=1
+[npRepeat]
+Measure=NowPlaying
+PlayerName=[state#NowPlayingMedia#]
+PlayerType=Repeat
+IfCondition=npRepeat = 1
+IfTrueAction=[!SetOption Repeat MeterStyle Repeat1][!UpdateMeter Repeat][!Redraw]
+IfCondition2=npRepeat = 2
+IfTrueAction2=[!SetOption Repeat MeterStyle Repeat2][!UpdateMeter Repeat][!Redraw]
+IfCondition3=npRepeat = 0
+IfTrueAction3=[!SetOption Repeat MeterStyle Repeat0][!UpdateMeter Repeat][!Redraw]
+UpdateDivider=1
+Group=Music | NP
+Disabled=1
 
 [npShuffle]
 Measure=NowPlaying
@@ -173,6 +174,8 @@ Plugin=WebNowPlaying
 PlayerType=Player
 UpdateDivider=1
 Group=Music | WNP
+Substitute="^\s":""
+RegexpSubstitute=1
 Disabled=1
 
 [wnpCover]
@@ -228,19 +231,19 @@ UpdateDivider=1
 Group=Music | WNP
 Disabled=1
 
-; [wnpRepeat]
-; Measure=Plugin
-; Plugin=WebNowPlaying
-; PlayerType=Repeat
-; IfCondition=wnpRepeat = 1
-; IfTrueAction=[!SetOption Repeat MeterStyle Repeat1][!UpdateMeter Repeat][!Redraw]
-; IfCondition2=wnpRepeat = 2
-; IfTrueAction2=[!SetOption Repeat MeterStyle Repeat2][!UpdateMeter Repeat][!Redraw]
-; IfCondition3=wnpRepeat = 0
-; IfTrueAction3=[!SetOption Repeat MeterStyle Repeat0][!UpdateMeter Repeat][!Redraw]
-; UpdateDivider=1
-; Group=Music | WNP
-; Disabled=1
+[wnpRepeat]
+Measure=Plugin
+Plugin=WebNowPlaying
+PlayerType=Repeat
+IfCondition=wnpRepeat = 1
+IfTrueAction=[!SetOption MediaRepeat MeterStyle "Sec.BottomButton:S | Repeat1"][!UpdateMeter MediaRepeat][!Redraw]
+IfCondition2=wnpRepeat = 2
+IfTrueAction2=[!SetOption MediaRepeat MeterStyle "Sec.BottomButton:S | Repeat2"][!UpdateMeter MediaRepeat][!Redraw]
+IfCondition3=wnpRepeat = 0
+IfTrueAction3=[!SetOption MediaRepeat MeterStyle "Sec.BottomButton:S | Repeat0"][!UpdateMeter MediaRepeat][!Redraw]
+UpdateDivider=1
+Group=Music | WNP
+Disabled=1
 
 [wnpShuffle]
 Measure=Plugin

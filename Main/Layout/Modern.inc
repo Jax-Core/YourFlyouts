@@ -29,9 +29,9 @@ Measure=Plugin
 Plugin=Win7AudioPlugin
 DynamicVariables=1
 OnChangeAction=[!Setvariable SliderX ([mVolume:]/100*#SliderW#+#SliderM#)][!UpdateMeterGroup Dynamic][!Redraw]
-IfCondition=mVolume < 20
+IfCondition=mVolume <= 1
 IfTrueAction=[!SetOption VolumeIcon Text "[\xE992]"]
-IfCondition2=(mVolume >= 20) && (mVolume < 50)
+IfCondition2=(mVolume >= 0) && (mVolume < 50)
 IfTrueAction2=[!SetOption VolumeIcon Text "[\xE993]"]
 IfCondition3=(mVolume >= 50) && (mVolume < 90)
 IfTrueAction3=[!SetOption VolumeIcon Text "[\xE994]"]
@@ -116,14 +116,16 @@ Container=VolumeC
 Meter=Shape
 X=r
 Y=(20*#Scale#)R
-Shape=Rectangle 0,0,#W#,#MediaH#,#R# | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,#PrimaryOpacity# | Stroke Color #SecondaryColor#,#SecondaryOpacity#
-Group=Music | Standard
+Shape=Rectangle 0,0,#W#,#MediaH#,#R# | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,(#PrimaryOpacity#*#TweenNode1#) | Stroke Color #SecondaryColor#,(#SecondaryOpacity#*#TweenNode1#)
+Group=Music | Standard | Animated
+DynamicVariables=1
 [MediaC]
 Meter=Shape
 X=r
 Y=r
-Shape=Rectangle 0,0,#W#,#MediaH#,#R# | StrokeWidth 0
-Group=Music | Standard
+Shape=Rectangle 0,0,#W#,(#MediaH#*#TweenNode1#),#R# | StrokeWidth 0 | Fill color 255,255,255,(255*#TweenNode1#)
+Group=Music | Standard | Animated
+DynamicVariables=1
 
 
 [MediaImageFade]
@@ -289,6 +291,8 @@ ImageName=[#PlayerType#Cover]
 DynamicVariables=1
 Group=Music | Standard | MediaImage
 Container=MediaC
+
+[MediaRepeat]
 
 ; ---------------------------------------------------------------------------- ;
 ;                                    Special                                   ;

@@ -9,7 +9,7 @@ Locks=1
 MediaType=Auto
 FetchImage=1
 
-Ani=1
+Ani=2
 AniDir=Top
 AniSteps=20
 Easetype=OutQuart
@@ -19,6 +19,6 @@ MediaKeyChange=5
 
 Position=TL
 MonitorIndex=1
-ScreenPadding=30
+ScreenPadding=10
 
-Layout=Modern
+Layout=Fluent

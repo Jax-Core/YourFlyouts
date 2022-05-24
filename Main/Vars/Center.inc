@@ -17,4 +17,4 @@ MediaImageOpacity=25
 Blur=Blur
 BlurCorner=Round
 
-Scale=1.5
+Scale=1

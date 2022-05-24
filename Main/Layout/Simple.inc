@@ -95,16 +95,18 @@ FontFace=#FontFace#
 
 [MediaB]
 Meter=Shape
-X=(#P#/2)R
+X=(#VolumeW#/2 + (#VolumeW#/2+#P#/2)*#TweenNode1#)
 Y=r
-Shape=Rectangle 0,0,#MediaW#,#H#,#R# | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,#PrimaryOpacity#
-Group=Music | Standard
+DynamicVariables=1
+Shape=Rectangle 0,0,#MediaW#,#H#,#R# | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,(#PrimaryOpacity#*#TweenNode1#)
+Group=Music | Standard | Animated
 [MediaC]
 Meter=Shape
 X=r
 Y=r
-Shape=Rectangle 0,0,#MediaW#,#H#,#R# | StrokeWidth 0
-Group=Music | Standard
+DynamicVariables=1
+Shape=Rectangle 0,0,#MediaW#,#H#,#R# | StrokeWidth 0 | Fill Color 255,255,255,(255*#TweenNode1#)
+Group=Music | Standard | Animated
 
 [MediaTrack]
 Meter=String

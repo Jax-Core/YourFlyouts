@@ -76,7 +76,7 @@ Meter=Shape
 MeterStyle=Set.Div:S
 [Option12]
 Meter=String
-Text=CapsLock / NumLock / ScrollLock
+Text=AnisLock / NumLock / ScrollLock
 MeterStyle=Set.String:S | Set.OptionName:S
 
 
@@ -190,10 +190,29 @@ Meter=String
 Text=#MediaKeyChange#
 MeterStyle=Set.String:S | Set.Value:S
 
-[Ani]
+[Ani:]
 Meter=Shape
-MeterStyle=Set.Bool:S
-Y=([Option31:Y]-#Set.P#+(-20/2+8)*[Set.S])
+0Act=[!WriteKeyValue Variables Ani "0" "#Sec.SaveLocation#"]
+1Act=[!WriteKeyValue Variables Ani "1" "#Sec.SaveLocation#"]
+2Act=[!WriteKeyValue Variables Ani "2" "#Sec.SaveLocation#"]
+MeterStyle=Set.Pick3:S
+Shape2=Rectangle (100*[Set.S]*([&Func:returnBool('Ani', '1')]+[&Func:returnBool('Ani', '2')]*2)),0,(300/3*[Set.S]),(30*[Set.S]),(7*[Set.S]) | Fill Color #Set.Text_Color# | StrokeWidth 0
+Y=([Option31:Y]-#Set.P#+(-30/2+8)*[Set.S])
+[Ani:0]
+Meter=String
+Text=None
+FontColor=[&Func:returnBool('Ani', '0', '#Set.Pri_color#', '#Set.Text_Color#')]
+MeterStyle=Set.String:S | Set.PickOption3_0:S
+[Ani:1]
+Meter=String
+Text=Fast
+FontColor=[&Func:returnBool('Ani', '1', '#Set.Pri_color#', '#Set.Text_Color#')]
+MeterStyle=Set.String:S | Set.PickOption3_1:S
+[Ani:2]
+Meter=String
+Text=Fancy
+FontColor=[&Func:returnBool('Ani', '2', '#Set.Pri_color#', '#Set.Text_Color#')]
+MeterStyle=Set.String:S | Set.PickOption3_2:S
 [Easetype]
 Meter=Shape
 MeterStyle=Set.Button:S
