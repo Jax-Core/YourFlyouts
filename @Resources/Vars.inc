@@ -9,7 +9,7 @@ Locks=1
 MediaType=Auto
 FetchImage=1
 
-Ani=2
+Ani=0
 AniDir=Top
 AniSteps=20
 Easetype=OutQuart
@@ -17,8 +17,8 @@ Easetype=OutQuart
 Timeout=1
 MediaKeyChange=5
 
-Position=TL
+Position=CC
 MonitorIndex=1
 ScreenPadding=10
 
-Layout=Fluent
+Layout=CoreUI
