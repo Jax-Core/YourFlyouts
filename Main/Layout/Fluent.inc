@@ -2,7 +2,8 @@
 H=(#Height#*#scale#)
 VolumeW=(80*#Scale#)
 MediaW=(500*#Scale#)
-LocksW=(#H#)
+LocksW=(250*#Scale#)
+LocksH=(50*#Scale#)
 P=(20*#Scale#)
 
 SliderM=(#P#+8*#scale#)
@@ -295,42 +296,40 @@ Container=MediaC
 Meter=Shape
 X=1
 Y=1
-Shape=Rectangle 0,0,#LocksW#,#H#,#R# | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,#PrimaryOpacity# | Stroke Color #SecondaryColor#,#SecondaryOpacity#
+Shape=Rectangle 0,0,#LocksW#,#LocksH#,#R# | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,#PrimaryOpacity# | Stroke Color #SecondaryColor#,#SecondaryOpacity#
 Group=Locks | Special
 Hidden=1
 [LocksC]
 Meter=Shape
 X=r
 Y=r
-Shape=Rectangle 0,0,#LocksW#,#H#,#R# | StrokeWidth 0
+Shape=Rectangle 0,0,#LocksW#,#LocksH#,#R# | StrokeWidth 0
 Group=Locks | Special
 Hidden=1
-
-
 
 [LocksIcon]
 Meter=String
 MeterStyle=String:S
-X=(#Locksw#/2)
-Y=(#Locksw#/2)
-Text=[\xe835]
-FontFace=Material Icons Round
-StringAlign=CenterCenter
-FontSize=(32*#scale#)
+X=#P#
+Y=(26*#scale#)
+FontFace=Segoe Fluent Icons 
+StringAlign=LeftCenter
+FontSize=(12*#scale#)
 Group=Locks | Special
-InlineSetting=Shadow | 0 | 0 | 10 | 0,0,0,150
 Container=LocksC
 Hidden=1
 [LocksText]
 Meter=String
 MeterStyle=String:S
-X=r
-Y=(#P#*2)r
-W=(#LocksW#)
-StringAlign=Center
-ClipString=2
-FontSize=(8*#scale#)
-Fontcolor=#FontColor2#
+X=(#P#)R
+Y=(-2*#scale#)r
+StringAlign=LeftCenter
 Group=Locks | Special
 Container=LocksC
 Hidden=1
+
+[LocksIcon.On:S]
+Text=[\xe73a]
+[LocksIcon.Off:S]
+Text=[\xe739]
+
