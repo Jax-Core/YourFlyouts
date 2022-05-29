@@ -10,7 +10,8 @@ PrimaryColor=12,12,12
 PrimaryOpacity=175
 FontColor=255,255,255
 FontColor2=150,150,150
-AccentColor=134, 10, 13
+AccentColor=2, 115, 205
+SysAccent=0
 Blur=Acrylic
 BlurCorner=Round
 

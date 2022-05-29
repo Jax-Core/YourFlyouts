@@ -63,6 +63,14 @@ RelativeToSkin=1
 RequireDragging=1
 DynamicVariables=1
 
+[SysColor]
+Measure=Plugin
+Plugin=SysColor
+ColorType=Aero
+OnUpdateAction=[!SetVariable AccentColor "[SysColor]"]
+DynamicVariables=1
+DisplayType=RGB
+Disabled=(1-#SysAccent#)
 
 ; --------------------------------- VolumeBar -------------------------------- ;
 
