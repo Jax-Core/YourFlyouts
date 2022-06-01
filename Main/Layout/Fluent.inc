@@ -57,7 +57,7 @@ Measure=Plugin
 Plugin=Mouse
 LeftMouseDragAction=[!SetVariable SliderX "(Clamp(($MouseY$),(#SliderM#),((#SliderM#)+#SliderW#)))"][!UpdateMeasure SliderPercent]
 ; actions to be executed when the mouse drags. The first bang gets the mouse value and make sure it's in the slider. The bangs after that updates the required measures and the slider.
-LeftMouseUpAction=[!SetVariable SliderX "(Clamp(($MouseY$),(#SliderM#),((#SliderM#)+#SliderW#)))"][!UpdateMeasure SliderPercent][!CommandMeasure VolumeMouse "Stop"]
+LeftMouseUpAction=[!SetVariable SliderX "(Clamp(($MouseY$),(#SliderM#),((#SliderM#)+#SliderW#)))"][!UpdateMeasure SliderPercent][!CommandMeasure VolumeMouse "Stop"][!SetOption VolumeBar BackStroke "Stroke Color #FontColor#,50"][!SetOption VolumeBar Stroke "Stroke Color #AccentColor#"][!UpdateMeter VolumeBar][!Redraw]
 ; actions to be executed after the mouse click is lifted. The first bang stops the measure to retrieve information from mouse dragging.
 RelativeToSkin=1
 RequireDragging=1
@@ -93,10 +93,13 @@ Group=Standard
 Meter=Shape
 X=(#VolumeW#/2)
 Y=(#SliderM#)
-Shape=Line 0,#SliderW#,0,0 | StrokeWidth (3*#scale#) | Fill Color 0,0,0,1 | Stroke Color #FontColor#,50 | StrokeStartCap #Cap# | StrokeEndCap #Cap#
-Shape2=Line 0,#SliderW#,0,(#SliderW#*(1-[mVolume:]/100)) | StrokeWidth (3*#Scale#) | Fill Color 0,0,0,1 | Stroke Color #AccentColor# | StrokeStartCap #Cap# | StrokeEndCap #Cap#
+Shape=Line 0,#SliderW#,0,0 | StrokeWidth (4*#scale#) | Fill Color 0,0,0,1 | Stroke Color #FontColor#,50 | StrokeStartCap #Cap# | StrokeEndCap #Cap# | Extend Backstroke
+Shape2=Line 0,#SliderW#,0,(#SliderW#*(1-[mVolume:]/100)) | StrokeWidth (4*#Scale#) | Fill Color 0,0,0,1 | StrokeStartCap #Cap# | StrokeEndCap #Cap# | Extend Stroke
 Shape3=Ellipse 0,(#SliderW#*(1-[mVolume:]/100)),(8*#scale#) | StrokeWidth 0 | Fill Color #FontColor#
-LeftMouseDownAction=[!CommandMeasure VolumeMouse "Start"]
+Shape4=Line 0,#SliderW#,0,0 | StrokeWidth (20*#Scale#) | Fill Color 0,0,0,1 | Stroke Color 0,0,0,1
+Stroke=Stroke Color #AccentColor#
+BackStroke=Stroke Color #FontColor#,50
+LeftMouseDownAction=[!SetOption #CURRENTSECTION# BackStroke "Stroke Color #FontColor#,25"][!SetOption #CURRENTSECTION# Stroke "Stroke Color #AccentColor#,100"][!UpdateMeter #CURRENTSECTION#][!Redraw][!CommandMeasure VolumeMouse "Start"]
 DynamicVariables=1
 Group=Dynamic | Standard
 Container=VolumeC
@@ -235,9 +238,6 @@ ImageName=#@#Icons\FluentRepeat.png
 [Repeat2]
 ImageName=#@#Icons\FluentRepeat2.png
 
-[MediaHeart]
-Meter=String
-
 [MediaHoverCircle]
 Meter=Shape
 Shape=Ellipse (10*#scale#),(10*#scale#),(20*#Scale#) | StrokeWidth 1 | Fill Color 0,0,0,0 | Extend Stroke
@@ -265,10 +265,14 @@ Container=MediaC
 Meter=Shape
 X=(#P#)r
 Y=r
-Shape=Line 0,0,(#MediaW#-#P#*4-70*#Scale#),0 | StrokeWidth (2*#Scale#) | Fill Color 0,0,0,1 | Stroke Color #FontColor#,50 | StrokeStartCap #Cap# | StrokeEndCap #Cap#
-Shape2=Line 0,0,((#MediaW#-#P#*4-70*#Scale#)*[#PlayerType#Progress]/100),0 | StrokeWidth (2*#Scale#) | Fill Color 0,0,0,1 | Stroke Color #AccentColor# | StrokeStartCap #Cap# | StrokeEndCap #Cap#
+Shape=Line 0,0,(#MediaW#-#P#*4-70*#Scale#),0 | StrokeWidth (4*#Scale#) | Fill Color 0,0,0,1 | StrokeStartCap #Cap# | StrokeEndCap #Cap# | Extend BackStroke
+Shape2=Line 0,0,((#MediaW#-#P#*4-70*#Scale#)*[#PlayerType#Progress]/100),0 | StrokeWidth (4*#Scale#) | Fill Color 0,0,0,1 | StrokeStartCap #Cap# | StrokeEndCap #Cap# | Extend Stroke
 Shape3=Ellipse ((#MediaW#-#P#*4-70*#Scale#)*[#PlayerType#Progress]/100),0,(8*#scale#) | StrokeWidth 0 | Fill Color #FontColor#
-LeftMouseUpAction=[!SetOption PosCalc Formula "($MouseX$/(#MediaW#-#P#*4-70*#Scale#)*100)"][!UpdateMeasure PosCalc]
+Shape4=Line 0,0,(#MediaW#-#P#*4-70*#Scale#),0 | StrokeWidth (20*#Scale#) | Fill Color 0,0,0,1 | Stroke Color 0,0,0,1
+Stroke=Stroke Color #AccentColor#
+BackStroke=Stroke Color #FontColor#,50
+LeftMouseDownAction=[!SetOption #CURRENTSECTION# BackStroke "Stroke Color #FontColor#,25"][!SetOption #CURRENTSECTION# Stroke "Stroke Color #AccentColor#,100"][!UpdateMeter #CURRENTSECTION#][!Redraw]
+LeftMouseUpAction=[!SetOption PosCalc Formula "($MouseX$/(#MediaW#-#P#*4-70*#Scale#)*100)"][!UpdateMeasure PosCalc][!SetOption #CURRENTSECTION# BackStroke "Stroke Color #FontColor#,50"][!SetOption #CURRENTSECTION# Stroke "Stroke Color #AccentColor#"][!UpdateMeter #CURRENTSECTION#][!Redraw]
 DynamicVariables=1
 UpdateDivider=1
 Group=Music | Standard
@@ -340,4 +344,10 @@ Hidden=1
 Text=[\xe73a]
 [LocksIcon.Off:S]
 Text=[\xe739]
+
+
+
+[MediaHeart]
+Meter=String
+Hidden=1
 
