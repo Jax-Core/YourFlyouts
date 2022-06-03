@@ -1,7 +1,6 @@
 [Variables]
 Height=180
 
-R=8
 FontFace=Segoe UI
 Stroke=0
 Cap=Round
@@ -13,6 +12,6 @@ FontColor2=150,150,150
 AccentColor=2, 115, 205
 SysAccent=1
 Blur=Acrylic
-BlurCorner=Round
+BlurCorner=None
 
 Scale=1

@@ -57,7 +57,7 @@ Measure=Plugin
 Plugin=Mouse
 LeftMouseDragAction=[!SetVariable SliderX "(Clamp(($MouseY$),(#SliderM#),((#SliderM#)+#SliderW#)))"][!UpdateMeasure SliderPercent]
 ; actions to be executed when the mouse drags. The first bang gets the mouse value and make sure it's in the slider. The bangs after that updates the required measures and the slider.
-LeftMouseUpAction=[!SetVariable SliderX "(Clamp(($MouseY$),(#SliderM#),((#SliderM#)+#SliderW#)))"][!UpdateMeasure SliderPercent][!CommandMeasure VolumeMouse "Stop"][!SetOption VolumeBar BackStroke "Stroke Color #FontColor#,50"][!SetOption VolumeBar Stroke "Stroke Color #AccentColor#"][!UpdateMeter VolumeBar][!Redraw]
+LeftMouseUpAction=[!SetVariable SliderX "(Clamp(($MouseY$),(#SliderM#),((#SliderM#)+#SliderW#)))"][!UpdateMeasure SliderPercent][!CommandMeasure VolumeMouse "Stop"][!SetOption VolumeBar MeterStyle "VolumeBar:0"][!UpdateMeter Volumebar][!Redraw]
 ; actions to be executed after the mouse click is lifted. The first bang stops the measure to retrieve information from mouse dragging.
 RelativeToSkin=1
 RequireDragging=1
@@ -78,7 +78,7 @@ Disabled=(1-#SysAccent#)
 Meter=Shape
 X=1
 Y=1
-Shape=Rectangle 0,0,#VolumeW#,#H#,#R# | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,#PrimaryOpacity#
+Shape=Rectangle 0,0,#VolumeW#,#H#,[&Func:returnCorner()] | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,#PrimaryOpacity#
 Group=Standard
 MouseScrollUpAction=[!CommandMeasure "mVolume" "ChangeVolume 2"][!UpdateMeasure mVolume]
 MouseScrollDownAction=[!CommandMeasure "mVolume" "ChangeVolume -2"][!UpdateMeasure mVolume]
@@ -86,7 +86,7 @@ MouseScrollDownAction=[!CommandMeasure "mVolume" "ChangeVolume -2"][!UpdateMeasu
 Meter=Shape
 X=r
 Y=r
-Shape=Rectangle 0,0,#VolumeW#,#H#,#R# | StrokeWidth 0
+Shape=Rectangle 0,0,#VolumeW#,#H#,[&Func:returnCorner()] | StrokeWidth 0
 Group=Standard
 
 [VolumeBar]
@@ -97,12 +97,17 @@ Shape=Line 0,#SliderW#,0,0 | StrokeWidth (4*#scale#) | Fill Color 0,0,0,1 | Stro
 Shape2=Line 0,#SliderW#,0,(#SliderW#*(1-[mVolume:]/100)) | StrokeWidth (4*#Scale#) | Fill Color 0,0,0,1 | StrokeStartCap #Cap# | StrokeEndCap #Cap# | Extend Stroke
 Shape3=Ellipse 0,(#SliderW#*(1-[mVolume:]/100)),(8*#scale#) | StrokeWidth 0 | Fill Color #FontColor#
 Shape4=Line 0,#SliderW#,0,0 | StrokeWidth (20*#Scale#) | Fill Color 0,0,0,1 | Stroke Color 0,0,0,1
-Stroke=Stroke Color #AccentColor#
-BackStroke=Stroke Color #FontColor#,50
-LeftMouseDownAction=[!SetOption #CURRENTSECTION# BackStroke "Stroke Color #FontColor#,25"][!SetOption #CURRENTSECTION# Stroke "Stroke Color #AccentColor#,100"][!UpdateMeter #CURRENTSECTION#][!Redraw][!CommandMeasure VolumeMouse "Start"]
+LeftMouseDownAction=[!SetOption VolumeBar MeterStyle "VolumeBar:1"][!UpdateMeter Volumebar][!Redraw][!CommandMeasure VolumeMouse "Start"]
 DynamicVariables=1
 Group=Dynamic | Standard
 Container=VolumeC
+MeterStyle=Volumebar:0
+[VolumeBar:0]
+BackStroke=Stroke Color #FontColor2#,25
+Stroke=Stroke Color #AccentColor#,100
+[VolumeBar:1]
+BackStroke=Stroke Color #FontColor#,50
+Stroke=Stroke Color #AccentColor#
 
 [VolumeString]
 Meter=String
@@ -111,7 +116,7 @@ X=(#VolumeW#/2)
 Y=(#H#-#P#)
 StringAlign=CenterBottom
 FontSize=(10*#scale#)
-Text=[mVolume:]
+Text=[&Func:volumeLevel()]
 FontColor=#FontColor2#
 DynamicVariables=1
 Group=Dynamic | Standard
@@ -123,8 +128,8 @@ Container=VolumeC
 Meter=Shape
 X=1
 Y=r
-Shape=Rectangle 0,0,(#MediaW#+#VolumeW#),#H#,#R# | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,#PrimaryOpacity#
-Shape2=Rectangle 0,0,#VolumeW#,#H#,(#R#+1) | StrokeWidth #Stroke#
+Shape=Rectangle 0,0,(#MediaW#+#VolumeW#),#H#,[&Func:returnCorner()] | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,#PrimaryOpacity#
+Shape2=Rectangle 0,0,#VolumeW#,#H#,([&Func:returnCorner()]+1) | StrokeWidth #Stroke#
 Shape3=Combine Shape | XOR Shape2
 Shape4=Line #VolumeW#,(#P#),#VolumeW#,(#P#+(#H#-#P#*2)*#TweenNode1#) | StrokeStartCap Round | StrokeEndCap ROund | StrokeWidth (1*#Scale#) | Stroke Color #FontColor#,50
 DynamicVariables=1
@@ -134,7 +139,7 @@ Meter=Shape
 X=(#VolumeW#)
 Y=r
 DynamicVariables=1
-Shape=Rectangle 0,0,(#MediaW#*#TweenNode1#),#H#,#R# | StrokeWidth 0 | Fill Color 255,255,255,(255*#TweenNode1#)
+Shape=Rectangle 0,0,(#MediaW#*#TweenNode1#),#H#,[&Func:returnCorner()] | StrokeWidth 0 | Fill Color 255,255,255,(255*#TweenNode1#)
 Group=Music | Standard | Animated
 
 [MediaImage]
@@ -308,14 +313,14 @@ Container=MediaC
 Meter=Shape
 X=1
 Y=1
-Shape=Rectangle 0,0,#LocksW#,#LocksH#,#R# | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,#PrimaryOpacity# | Stroke Color #SecondaryColor#,#SecondaryOpacity#
+Shape=Rectangle 0,0,#LocksW#,#LocksH#,[&Func:returnCorner()] | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,#PrimaryOpacity# | Stroke Color #SecondaryColor#,#SecondaryOpacity#
 Group=Locks | Special
 Hidden=1
 [LocksC]
 Meter=Shape
 X=r
 Y=r
-Shape=Rectangle 0,0,#LocksW#,#LocksH#,#R# | StrokeWidth 0
+Shape=Rectangle 0,0,#LocksW#,#LocksH#,[&Func:returnCorner()] | StrokeWidth 0
 Group=Locks | Special
 Hidden=1
 
