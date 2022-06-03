@@ -155,16 +155,17 @@ DynamicVariables=1
 Group=Music | Standard | MediaImage
 Container=MediaC
 
-[MediaPlayerImage]
+[MediaImageTopLeft]
 Meter=Image
-X=(8*#Scale#+#P#)
-Y=(#P#+8*#Scale#)
-W=(48*#Scale#)
-H=(48*#Scale#)
+X=(#P#)
+Y=(#P#)
+W=(64*#Scale#)
+H=(64*#Scale#)
 PreserveAspectRatio=2
-ImageName=#@#Icons\Players\[#PlayerType#Player].png
+ImageName=[#PlayerType#Cover]
+MaskImageName=#@#Images\SquareRoundedMask.png
 DynamicVariables=1
-Group=Music | Standard
+Group=Music | Standard | MediaImage
 Container=MediaC
 
 [MediaTrack]
