@@ -79,12 +79,21 @@ This project is heavily inspired by [ModernFlyouts](https://github.com/ModernFly
 * Most aspect of the flyout can be customized to your liking, including **timeout**, **colors**, **size** and anything you can think of
 
 
-# Installation
+<!-- INSTALLATION AND SETUP -->
+## Getting Started
 
-Assuming you successfully downloaded and installed Rainmeter as well as JaxCore, you can now proceed to install ValliStart by following the steps below.
+### Prerequisites
+- **Windows 10** or above
+- For older systems, **Powershell v5.1 or newer** is required. Upgrade powershell **[here](https://docs.microsoft.com/en-us/powershell/scripting/windows-powershell/install/installing-windows-powershell?view=powershell-7.2#upgrading-existing-windows-powershell)**!
 
-1. Download and run the `.rmskin` file for **ValliStart** from the official [JaxCore site](https://jax-core.github.io/) to install **ValliStart**.
-2. Leave the installation settings at their defaults and click Install.
-3. When the installation is finished, a startup pop-up should appear. Follow through the pop-up to finish installing ValliStart.
-
+### Installation 
+**By Powershell CLI:**
+Run the following command in Powershell (`win + r` -> `powershell.exe` / search)
+```
+$installSkin="YourFlyouts";Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/Jax-Core/JaxCore/master/CoreInstaller.ps1" | Invoke-Expression
+```
+**By legacy [Rainmeter](https://www.rainmeter.net/) .rmskin installer:**
+Download and run the `.rmskin` file from the latest release **[here](https://github.com/Jax-Core/YourFlyouts/releases/latest)**.
 > Note:  If you find that the JaxCore option is red on the startup pop-up, please press the red button and Core will be installed automatically. Perchance this fails, you can manually install Core by downloading the `.rmskin` file from [JaxCore's official website.](https://jax-core.github.io/)
+<br />
+<br />
