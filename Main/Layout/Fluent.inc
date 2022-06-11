@@ -6,10 +6,18 @@ LocksW=(250*#Scale#)
 LocksH=(50*#Scale#)
 P=(20*#Scale#)
 
-SliderM=(#P#+8*#scale#)
-SliderW=(#H#-#P#*2-(30+8*2)*#Scale#)
-
 MHC_Reset=[!SetOption MediaHoverCircle Stroke "Stroke Color #FontColor#,20"][!UpdateMeter MediaHoverCircle][!Redraw]
+
+SliderRotation=v
+
+[SliderStart]
+Formula=(#P#+8*#scale#)
+[SliderEnd]
+Formula=(#H#-#P#*2-(30+8*2)*#Scale#)
+
+; ---------------------------------------------------------------------------- ;
+;                                  MeterStyle                                  ;
+; ---------------------------------------------------------------------------- ;
 
 [Sec.BottomButton:S]
 X=(#P#*2)R
@@ -29,39 +37,12 @@ LeftMouseDownAction=[!SetOption MediaHoverCircle Stroke "Stroke Color #FontColor
 ;                                   Function                                   ;
 ; ---------------------------------------------------------------------------- ;
 
-
-[mVolume]
-Measure=Plugin
-Plugin=Win7AudioPlugin
-DynamicVariables=1
-OnChangeAction=[!UpdateMeterGroup Dynamic][!Redraw]
-UpdateDivider=1
-
 [FrostedGlass]
 Measure=Plugin
 Plugin=FrostedGlass
 Type=#Blur#
 Corner=#BlurCorner#
 Border=None
-
-[SliderPercent]
-Measure=Calc
-Formula=(100-(#SliderX#-(#SliderM#))*100/(((#SliderM#)+#SliderW#)-(#SliderM#)))
-OnUpdateAction=[!CommandMeasure "mVolume" "SetVolume [#CURRENTSECTION#]"][!UpdateMeasure mVolume]
-DynamicVariables=1
-Disabled=1
-Group=NUOL
-
-[VolumeMouse]
-Measure=Plugin
-Plugin=Mouse
-LeftMouseDragAction=[!SetVariable SliderX "(Clamp(($MouseY$),(#SliderM#),((#SliderM#)+#SliderW#)))"][!UpdateMeasure SliderPercent]
-; actions to be executed when the mouse drags. The first bang gets the mouse value and make sure it's in the slider. The bangs after that updates the required measures and the slider.
-LeftMouseUpAction=[!SetVariable SliderX "(Clamp(($MouseY$),(#SliderM#),((#SliderM#)+#SliderW#)))"][!UpdateMeasure SliderPercent][!CommandMeasure VolumeMouse "Stop"][!SetOption VolumeBar MeterStyle "VolumeBar:0"][!UpdateMeter Volumebar][!Redraw]
-; actions to be executed after the mouse click is lifted. The first bang stops the measure to retrieve information from mouse dragging.
-RelativeToSkin=1
-RequireDragging=1
-DynamicVariables=1
 
 [SysColor]
 Measure=Plugin
@@ -92,11 +73,11 @@ Group=Standard
 [VolumeBar]
 Meter=Shape
 X=(#VolumeW#/2)
-Y=(#SliderM#)
-Shape=Line 0,#SliderW#,0,0 | StrokeWidth (4*#scale#) | Fill Color 0,0,0,1 | Stroke Color #FontColor#,50 | StrokeStartCap #Cap# | StrokeEndCap #Cap# | Extend Backstroke
-Shape2=Line 0,#SliderW#,0,(#SliderW#*(1-[mVolume:]/100)) | StrokeWidth (4*#Scale#) | Fill Color 0,0,0,1 | StrokeStartCap #Cap# | StrokeEndCap #Cap# | Extend Stroke
-Shape3=Ellipse 0,(#SliderW#*(1-[mVolume:]/100)),(8*#scale#) | StrokeWidth 0 | Fill Color #FontColor#
-Shape4=Line 0,#SliderW#,0,0 | StrokeWidth (20*#Scale#) | Fill Color 0,0,0,1 | Stroke Color 0,0,0,1
+Y=([SliderStart])
+Shape=Line 0,[SliderEnd],0,0 | StrokeWidth (4*#scale#) | Fill Color 0,0,0,1 | Stroke Color #FontColor#,50 | StrokeStartCap #Cap# | StrokeEndCap #Cap# | Extend Backstroke
+Shape2=Line 0,[SliderEnd],0,([SliderEnd]*(1-[#CurrentSlider#:]/100)) | StrokeWidth (4*#Scale#) | Fill Color 0,0,0,1 | StrokeStartCap #Cap# | StrokeEndCap #Cap# | Extend Stroke
+Shape3=Ellipse 0,([SliderEnd]*(1-[#CurrentSlider#:]/100)),(8*#scale#) | StrokeWidth 0 | Fill Color #FontColor#
+Shape4=Line 0,[SliderEnd],0,0 | StrokeWidth (20*#Scale#) | Fill Color 0,0,0,1 | Stroke Color 0,0,0,1
 LeftMouseDownAction=[!SetOption VolumeBar MeterStyle "VolumeBar:1"][!UpdateMeter Volumebar][!Redraw][!CommandMeasure VolumeMouse "Start"]
 DynamicVariables=1
 Group=Dynamic | Standard
