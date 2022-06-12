@@ -18,10 +18,10 @@
 </div>
 
 <p align="center">
-  <img alt="Latest by date" src="https://img.shields.io/github/v/tag/Jax-Core/ValliStart?label=Version&style=for-the-badge" />
-  <img alt="Release date" src="https://img.shields.io/github/release-date/Jax-Core/ValliStart?label=Last%20Core%20Update&style=for-the-badge" />
+  <img alt="Latest by date" src="https://img.shields.io/github/v/tag/Jax-Core/YourFlyouts?label=Version&style=for-the-badge" />
+  <img alt="Release date" src="https://img.shields.io/github/release-date/Jax-Core/YourFlyouts?label=Last%20Core%20Update&style=for-the-badge" />
   <img alt="Discord" src="https://img.shields.io/discord/880445067754610688?label=Discord%20server&style=for-the-badge" />
-  <img alt="Github" src="https://img.shields.io/github/license/Jax-Core/ValliStart?style=for-the-badge" />
+  <img alt="Github" src="https://img.shields.io/github/license/Jax-Core/YourFlyouts?style=for-the-badge" />
   
 </p>
 
@@ -61,7 +61,10 @@
 </details>
 
 <!-- ABOUT THE PROJECT -->
-# About
+## About
+
+![YourFlyouts](https://user-images.githubusercontent.com/80020581/173227106-b4287c13-451f-4c31-b7fc-5cc593f89abb.png)
+
 This module provides multiple replacements for the old, built-in, Metro Design based Audio/Media/Brightness flyouts in Windows which are shown while pressing the media or volume keys.
 Along with a number of unique designs, it also provides additional customizability towards the behavioral **and** appearance side of things!
 
@@ -69,7 +72,7 @@ This project is heavily inspired by [ModernFlyouts](https://github.com/ModernFly
 > Note: Built-in flyout will not be permanently affected. It will be hidden temporarily while YourFlyouts is running, hence it does not modify any system files.
 > You can also use YourFlyouts to disable the flyout completely!
 
-# Features
+## Features
 * Smooth animations, with the avability to reduce & turn off
 * Multiple visual styles
 * Supports [NowPlaying](https://docs.rainmeter.net/manual/measures/nowplaying/) and [WebNowPlaying](https://github.com/tjhrulz/WebNowPlaying)
