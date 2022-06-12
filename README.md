@@ -24,42 +24,6 @@
   <img alt="Github" src="https://img.shields.io/github/license/Jax-Core/YourFlyouts?style=for-the-badge" />
   
 </p>
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about">About</a>
-    </li>
-    <li>
-      <a href="#Features">Features</a>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-        <li> <a href="#customization">Customization</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#modules-setup">Modules Setup</a>
-      <ul>
-        <li><a href="#pinned-shortcuts">Pinned Shortcuts</a></li>
-        <li><a href="#weather">Weather</a></li>
-        <li><a href="#media-controls">Media Controls</a>
-          <ul>
-            <li><a href="#for-spotify">Spotify</a></li>
-            <li><a href="#for-web-players">Web Players</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-    <li> <a href="#help-and-credits">Help & Credits</a></li>
-  </ol>
-</details>
-
 <!-- ABOUT THE PROJECT -->
 ## About
 
@@ -81,6 +45,9 @@ This project is heavily inspired by [ModernFlyouts](https://github.com/ModernFly
 * Supports multiple monitors
 * Most aspect of the flyout can be customized to your liking, including **timeout**, **colors**, **size** and anything you can think of
 
+<p align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</p>
 
 <!-- INSTALLATION AND SETUP -->
 ## Getting Started
