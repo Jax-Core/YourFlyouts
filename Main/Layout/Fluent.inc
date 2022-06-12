@@ -61,6 +61,7 @@ X=1
 Y=1
 Shape=Rectangle 0,0,#VolumeW#,#H#,[&Func:returnCorner()] | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,#PrimaryOpacity#
 Group=Standard
+DynamicVariables=1
 MouseScrollUpAction=[!CommandMeasure "mVolume" "ChangeVolume 2"][!UpdateMeasure mVolume]
 MouseScrollDownAction=[!CommandMeasure "mVolume" "ChangeVolume -2"][!UpdateMeasure mVolume]
 [VolumeC]
@@ -69,6 +70,7 @@ X=r
 Y=r
 Shape=Rectangle 0,0,#VolumeW#,#H#,[&Func:returnCorner()] | StrokeWidth 0
 Group=Standard
+DynamicVariables=1
 
 [VolumeBar]
 Meter=Shape
@@ -120,12 +122,12 @@ Meter=Shape
 X=(#VolumeW#)
 Y=r
 DynamicVariables=1
-Shape=Rectangle 0,0,(#MediaW#*#TweenNode1#),#H#,[&Func:returnCorner()] | StrokeWidth 0 | Fill Color 255,255,255,(255*#TweenNode1#)
+Shape=Rectangle 0,0,(#MediaW#*#TweenNode1#+1),#H#,[&Func:returnCorner()] | StrokeWidth 0 | Fill Color 255,255,255,(255*#TweenNode1#)
 Group=Music | Standard | Animated
 
 [MediaImage]
 Meter=Image
-X=(#MediaW#-#H#*1.5+#P#)
+X=(#MediaW#-#H#*1.5+#VolumeW#)
 Y=0
 W=(#H#*1.5)
 H=(#H#)
