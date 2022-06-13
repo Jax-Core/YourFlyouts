@@ -9,6 +9,7 @@ P=(20*#Scale#)
 MHC_Reset=[!SetOption MediaHoverCircle Stroke "Stroke Color #FontColor#,20"][!UpdateMeter MediaHoverCircle][!Redraw]
 
 SliderRotation=v
+SliderEndAction=[!SetOption VolumeBar MeterStyle "VolumeBar:0"][!UpdateMeter Volumebar][!Redraw]
 
 [SliderStart]
 Formula=(#P#+8*#scale#)
@@ -86,11 +87,11 @@ Group=Dynamic | Standard
 Container=VolumeC
 MeterStyle=Volumebar:0
 [VolumeBar:0]
-BackStroke=Stroke Color #FontColor2#,25
-Stroke=Stroke Color #AccentColor#,100
-[VolumeBar:1]
 BackStroke=Stroke Color #FontColor#,50
 Stroke=Stroke Color #AccentColor#
+[VolumeBar:1]
+BackStroke=Stroke Color #FontColor2#,25
+Stroke=Stroke Color #AccentColor#,100
 
 [VolumeString]
 Meter=String
