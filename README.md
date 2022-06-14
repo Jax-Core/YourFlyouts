@@ -25,10 +25,13 @@
 </p>
 <!-- ABOUT THE PROJECT -->
 
-## About
-![YourFlyouts](https://user-images.githubusercontent.com/80020581/173227106-b4287c13-451f-4c31-b7fc-5cc593f89abb.png)
+# About
 
-This module provides multiple replacements for the old, built-in, Metro Design based Audio/Media/Brightness flyouts in Windows which are shown while pressing the media or volume keys.
+![YourFlyoutsWindows](https://user-images.githubusercontent.com/80020581/173570553-d0ad2f0f-8395-49ed-ab53-d52f788bdc08.png)
+
+![YourFlyouts](https://user-images.githubusercontent.com/80020581/173569289-ef77a148-f115-4796-ba0e-dcb258b1403a.png)
+
+**YourFlyouts** provides multiple replacements for the old, built-in, Metro Design based Audio/Media/Brightness flyouts in Windows which are shown while pressing the media or volume keys.
 Along with a number of unique designs, it also provides additional customizability towards the behavioral **and** appearance side of things!
 
 This project is heavily inspired by [ModernFlyouts](https://github.com/ModernFlyouts-Community/ModernFlyouts)! YourFlyouts is still multiple steps from being a complete replacement, but it excels in other ways!
