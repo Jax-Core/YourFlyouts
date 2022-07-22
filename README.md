@@ -1,3 +1,6 @@
+# YourFlyouts v2 rework WIP!
+Full brightness support, airplane mode and more, coming soon!
+
 <div id="top"></div>
 
 <br />
