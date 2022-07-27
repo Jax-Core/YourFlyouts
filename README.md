@@ -65,14 +65,14 @@ This project is heavily inspired by [ModernFlyouts](https://github.com/ModernFly
 - For older systems, **Powershell v5.1 or newer** is required. Upgrade powershell **[here](https://docs.microsoft.com/en-us/powershell/scripting/windows-powershell/install/installing-windows-powershell?view=powershell-7.2#upgrading-existing-windows-powershell)**!
 
 ### Installation 
-**By Powershell CLI:**
-Run the following command in Powershell (`win + r` -> `powershell.exe` / search)
+Run the following command in Powershell to get the latest version of JaxCore (`win + r` -> `powershell.exe` / search)
 ```
-$installSkin="YourFlyouts";Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/Jax-Core/JaxCore/master/CoreInstaller.ps1" | Invoke-Expression
+Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/Jax-Core/JaxCore/master/CoreInstaller.ps1" | Invoke-Expression
 ```
-**By legacy [Rainmeter](https://www.rainmeter.net/) .rmskin installer:**
-Download and run the `.rmskin` file from the latest release **[here](https://github.com/Jax-Core/YourFlyouts/releases/latest)**.
-> Note:  If you find that the JaxCore option is red on the startup pop-up, please press the red button and Core will be installed automatically. Perchance this fails, you can manually install Core by downloading the `.rmskin` file from [JaxCore's official website.](https://jax-core.github.io/)
+Alternatively you can get it on the [website](https://jax-core.github.io/)
+
+After you've proceeded through the welcome screen, select this module and click Install. It will appear in the library page after that.
+
 <br />
 <br />
 
