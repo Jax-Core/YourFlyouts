@@ -15,6 +15,7 @@ Full brightness support, airplane mode and more, coming soon!
     <a href="https://discord.gg/JmgehPSDD6">Help, Report Bugs & Request Features »</a>
   </p>
 </div>
+
 <!-- END Header.mustache -->
 <!-- START ShieldsFull.mustache -->
 <p align="center">
@@ -31,6 +32,7 @@ Full brightness support, airplane mode and more, coming soon!
 ## About
 
 ![YourFlyouts](https://raw.githubusercontent.com/Jax-Core/ReadME-Template/main/Resources/Splash/YourFlyouts.png)
+
 <!-- END About.mustache -->
 ![YourFlyouts](https://user-images.githubusercontent.com/80020581/173569289-ef77a148-f115-4796-ba0e-dcb258b1403a.png)
 
@@ -66,14 +68,15 @@ Run the following command in Powershell to download the latest version of JaxCor
 (To launch Powershell as an Admin: `Win + R` -> `powershell` -> Press `CTRL + SHIFT + ENTER` on your keyboard. Powershell can also be launched via Windows Search.)
 
 ```
-Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/Jax-Core/JaxCore/master/CoreInstaller.ps1" | Invoke-Expression
+iwr -useb "https://raw.githubusercontent.com/Jax-Core/JaxCore/master/CoreInstaller.ps1" | iex
 ```
 
 > Alternatively you can download it from the [website](https://jax-core.github.io/)
 
 After you've proceeded through the welcome screen, select `YourFlyouts` (might have to scroll down) and click `Install`. It will appear in the library page after that.
 <br />
-<br /><!-- END GetStarted.mustache -->
+<br />
+<!-- END GetStarted.mustache -->
 <!-- START Setup.mustache -->
 
 ### Configuration
