@@ -40,13 +40,13 @@ LeftMouseDownAction=[!SetOption MediaHoverCircle Stroke "Stroke Color #FontColor
 
 
 [mVolume]
-OnUpdateAction=[!SetOption VolumeString Text """[&Func:volumeLevel()]"""]
+OnUpdateAction=[!SetOption VolumeString Text """[&Func:volumeLevel()]"""][!SetOption VolumeString FontFace "#FontFace#"]
 
 [mBrightness]
 IfCondition=(mBrightness == 0)
-IfTrueAction=[!SetOption VolumeString Text "[\xe1ad]"]
+IfTrueAction=[!SetOption VolumeString Text "[\xe1ad]"][!SetOption VolumeString FontFace "Segoe MDL2 Assets"]
 IfCondition2=(mBrightness > 0)
-IfTrueAction2=[!SetOption VolumeString Text "[\xe1ac]"]
+IfTrueAction2=[!SetOption VolumeString Text "[\xe1ac]"][!SetOption VolumeString FontFace "Segoe MDL2 Assets"]
 IfConditionMode=1
 
 [FrostedGlass]
@@ -345,6 +345,10 @@ Hidden=1
 Text=[\xe73a]
 [LocksIcon.Off:S]
 Text=[\xe739]
+[FlightIcon.On:S]
+Text=[\xe709]
+[FlightIcon.Off:S]
+Text=[\xe709]
 
 
 
