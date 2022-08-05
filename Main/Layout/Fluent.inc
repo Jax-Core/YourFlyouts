@@ -44,9 +44,9 @@ OnUpdateAction=[!SetOption VolumeString Text """[&Func:volumeLevel()]"""][!SetOp
 
 [mBrightness]
 IfCondition=(mBrightness == 0)
-IfTrueAction=[!SetOption VolumeString Text "[\xe1ad]"][!SetOption VolumeString FontFace "Segoe MDL2 Assets"]
+IfTrueAction=[!SetOption VolumeString Text "[\xEC8A]"][!SetOption VolumeString FontFace "Segoe MDL2 Assets"]
 IfCondition2=(mBrightness > 0)
-IfTrueAction2=[!SetOption VolumeString Text "[\xe1ac]"][!SetOption VolumeString FontFace "Segoe MDL2 Assets"]
+IfTrueAction2=[!SetOption VolumeString Text "[\xE706]"][!SetOption VolumeString FontFace "Segoe MDL2 Assets"]
 IfConditionMode=1
 
 [FrostedGlass]
