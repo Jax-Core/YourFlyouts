@@ -38,6 +38,17 @@ LeftMouseDownAction=[!SetOption MediaHoverCircle Stroke "Stroke Color #FontColor
 ;                                   Function                                   ;
 ; ---------------------------------------------------------------------------- ;
 
+
+[mVolume]
+OnUpdateAction=[!SetOption VolumeString Text """[&Func:volumeLevel()]"""]
+
+[mBrightness]
+IfCondition=(mBrightness == 0)
+IfTrueAction=[!SetOption VolumeString Text "[\xe1ad]"]
+IfCondition2=(mBrightness > 0)
+IfTrueAction2=[!SetOption VolumeString Text "[\xe1ac]"]
+IfConditionMode=1
+
 [FrostedGlass]
 Measure=Plugin
 Plugin=FrostedGlass
