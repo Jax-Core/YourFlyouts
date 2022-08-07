@@ -54,7 +54,7 @@ Measure=Plugin
 Plugin=FrostedGlass
 Type=#Blur#
 Corner=#BlurCorner#
-Border=None
+Border=All
 
 [SysColor]
 Measure=Plugin
@@ -69,9 +69,7 @@ Disabled=(1-#SysAccent#)
 
 [VolumeB]
 Meter=Shape
-X=1
-Y=1
-Shape=Rectangle 0,0,#VolumeW#,#H#,[&Func:returnCorner()] | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,#PrimaryOpacity#
+Shape=Rectangle 0,0,#VolumeW#,#H#,[&Func:returnCorner()] | StrokeWidth 0 | Fill Color #PrimaryColor#,#PrimaryOpacity#
 Group=Standard
 DynamicVariables=1
 MouseScrollUpAction=[!CommandMeasure "mVolume" "ChangeVolume 2"][!UpdateMeasure mVolume]
@@ -307,8 +305,6 @@ Container=MediaC
 
 [LocksB]
 Meter=Shape
-X=1
-Y=1
 Shape=Rectangle 0,0,#LocksW#,#LocksH#,[&Func:returnCorner()] | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,#PrimaryOpacity# | Stroke Color #SecondaryColor#,#SecondaryOpacity#
 Group=Locks | Special
 Hidden=1
