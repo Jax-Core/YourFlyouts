@@ -1,5 +1,5 @@
 [Variables]
-Height=180
+Height=200
 
 FontFace=Segoe UI
 Border=1
