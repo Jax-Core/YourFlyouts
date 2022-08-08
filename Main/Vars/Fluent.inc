@@ -2,7 +2,7 @@
 Height=180
 
 FontFace=Segoe UI
-Stroke=0
+Border=1
 Cap=Round
 
 PrimaryColor=12,12,12

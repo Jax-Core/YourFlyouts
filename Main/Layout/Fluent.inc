@@ -67,9 +67,20 @@ Disabled=(1-#SysAccent#)
 
 ; --------------------------------- VolumeBar -------------------------------- ;
 
+[StrokeB]
+Meter=Shape
+X=#Border#
+Y=#Border#
+Shape=Rectangle 0,0,(#VolumeW#+#MediaW#*#MusicVisible#),(#H#),#StaticWin11Corner# | Stroke Color #FontColor#,50 | StrokeWidth (#Border#*#Scale#) | Fill Color 0,0,0,0
+DynamicVariables=1
+Group=Standard | Music
+Hidden=(1-#Border#)
+
 [VolumeB]
 Meter=Shape
-Shape=Rectangle 0,0,#VolumeW#,#H#,[&Func:returnCorner()] | StrokeWidth 0 | Fill Color #PrimaryColor#,#PrimaryOpacity#
+X=r
+Y=r
+Shape=Rectangle 0,0,#VolumeW#,#H#,#StaticWin11Corner# | StrokeWidth 0 | Fill Color #PrimaryColor#,#PrimaryOpacity#
 Group=Standard
 DynamicVariables=1
 MouseScrollUpAction=[!CommandMeasure "mVolume" "ChangeVolume 2"][!UpdateMeasure mVolume]
@@ -78,7 +89,7 @@ MouseScrollDownAction=[!CommandMeasure "mVolume" "ChangeVolume -2"][!UpdateMeasu
 Meter=Shape
 X=r
 Y=r
-Shape=Rectangle 0,0,#VolumeW#,#H#,[&Func:returnCorner()] | StrokeWidth 0
+Shape=Rectangle 0,0,#VolumeW#,#H#,#StaticWin11Corner# | StrokeWidth 0
 Group=Standard
 DynamicVariables=1
 
@@ -119,10 +130,10 @@ Container=VolumeC
 
 [MediaB]
 Meter=Shape
-X=1
+X=r
 Y=r
-Shape=Rectangle 0,0,(#MediaW#+#VolumeW#),#H#,[&Func:returnCorner()] | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,#PrimaryOpacity#
-Shape2=Rectangle 0,0,#VolumeW#,#H#,([&Func:returnCorner()]+1) | StrokeWidth #Stroke#
+Shape=Rectangle 0,0,(#MediaW#+#VolumeW#),#H#,#StaticWin11Corner# | StrokeWidth 0 | Fill Color #PrimaryColor#,#PrimaryOpacity#
+Shape2=Rectangle 0,0,#VolumeW#,#H#,(#StaticWin11Corner#+1) | StrokeWidth 0
 Shape3=Combine Shape | XOR Shape2
 Shape4=Line #VolumeW#,(#P#),#VolumeW#,(#P#+(#H#-#P#*2)*#TweenNode1#) | StrokeStartCap Round | StrokeEndCap ROund | StrokeWidth (1*#Scale#) | Stroke Color #FontColor#,50
 DynamicVariables=1
@@ -132,7 +143,7 @@ Meter=Shape
 X=(#VolumeW#)
 Y=r
 DynamicVariables=1
-Shape=Rectangle 0,0,(#MediaW#*#TweenNode1#+1),#H#,[&Func:returnCorner()] | StrokeWidth 0 | Fill Color 255,255,255,(255*#TweenNode1#)
+Shape=Rectangle 0,0,(#MediaW#*#TweenNode1#+1),#H#,#StaticWin11Corner# | StrokeWidth 0 | Fill Color 255,255,255,(255*#TweenNode1#)
 Group=Music | Standard | Animated
 
 [MediaImage]
@@ -305,14 +316,16 @@ Container=MediaC
 
 [LocksB]
 Meter=Shape
-Shape=Rectangle 0,0,#LocksW#,#LocksH#,[&Func:returnCorner()] | StrokeWidth #Stroke# | Fill Color #PrimaryColor#,#PrimaryOpacity# | Stroke Color #SecondaryColor#,#SecondaryOpacity#
+X=#Border#
+Y=#Border#
+Shape=Rectangle 0,0,#LocksW#,#LocksH#,#StaticWin11Corner# | StrokeWidth (#Border#*#Scale#) | Fill Color #PrimaryColor#,#PrimaryOpacity# | Stroke Color #FontColor#,50 
 Group=Locks | Special
 Hidden=1
 [LocksC]
 Meter=Shape
 X=r
 Y=r
-Shape=Rectangle 0,0,#LocksW#,#LocksH#,[&Func:returnCorner()] | StrokeWidth 0
+Shape=Rectangle 0,0,#LocksW#,#LocksH#,#StaticWin11Corner# | StrokeWidth 0
 Group=Locks | Special
 Hidden=1
 
