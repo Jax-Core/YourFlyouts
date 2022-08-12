@@ -33,8 +33,8 @@
 
 ![YourFlyouts2](https://user-images.githubusercontent.com/80020581/184153360-6ad1d33e-cde4-4982-849f-43747adea7cd.png)
 
-**YourFlyouts** provides multiple replacements for the default Audio/Media/Brightness/Flight flyouts in Windows which are shown while pressing the volume/multimedia/brightness/flight keys.
-Along with a number of unique designs, it also provides additional customizability towards the behavioral **and** appearance side of things!
+**YourFlyouts** provides multiple replacements for the default Volume / Brightness flyouts in Windows which are shown while pressing the volume / brightness keys. It also works with lock, airplane mode & multimedia keys!
+Along with 10 unique designs, it also provides additional customizability towards the behavioral **and** appearance side of things!
 
 This project is heavily inspired by [ModernFlyouts](https://github.com/ModernFlyouts-Community/ModernFlyouts)!
 > Note: Built-in flyout will not be permanently affected. It will be hidden temporarily while YourFlyouts is running, hence it does not modify any system files.
