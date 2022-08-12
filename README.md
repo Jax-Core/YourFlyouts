@@ -1,4 +1,17 @@
 <!-- START Header.mustache -->
+<br />
+<div align="center">
+  <a href="https://github.com/Jax-Core/YourFlyouts">
+    <img src="https://raw.githubusercontent.com/Jax-Core/ReadME-Template/main/Resources/Icons/YourFlyouts.png" alt="Logo" width="180" height="180">
+  </a>
+
+<h3 align="center">YourFlyouts</h3>
+  <p align="center">
+    Fully customizable, multi-designed flyouts replacement for Windows
+    <br />
+    <a href="https://discord.gg/JmgehPSDD6">Help, Report Bugs & Request Features »</a>
+  </p>
+</div>
 <!-- END Header.mustache -->
 <!-- START ShieldsFull.mustache -->
 <p align="center">
@@ -61,6 +74,7 @@ iwr -useb "https://raw.githubusercontent.com/Jax-Core/JaxCore/master/CoreInstall
 After you've proceeded through the welcome screen, select `YourFlyouts` (might have to scroll down) and click `Install`. It will appear in the library page after that.
 <br />
 <br />
+
 <!-- END GetStarted.mustache -->
 <!-- START Setup.mustache -->
 
