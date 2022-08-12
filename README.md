@@ -31,7 +31,8 @@
 ![YourFlyouts](https://raw.githubusercontent.com/Jax-Core/ReadME-Template/main/Resources/Splash/YourFlyouts.png)
 
 <!-- END About.mustache -->
-![YourFlyouts](https://user-images.githubusercontent.com/80020581/173569289-ef77a148-f115-4796-ba0e-dcb258b1403a.png)
+
+![YourFlyouts2](https://user-images.githubusercontent.com/80020581/184153360-6ad1d33e-cde4-4982-849f-43747adea7cd.png)
 
 **YourFlyouts** provides multiple replacements for the default Audio/Media/Brightness/Flight flyouts in Windows which are shown while pressing the volume/multimedia/brightness/flight keys.
 Along with a number of unique designs, it also provides additional customizability towards the behavioral **and** appearance side of things!
