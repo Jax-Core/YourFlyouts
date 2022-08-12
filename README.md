@@ -1,18 +1,4 @@
 <!-- START Header.mustache -->
-<br />
-<div align="center">
-  <a href="https://github.com/Jax-Core/YourFlyouts">
-    <img src="https://raw.githubusercontent.com/Jax-Core/ReadME-Template/main/Resources/Icons/YourFlyouts.png" alt="Logo" width="180" height="180">
-  </a>
-
-<h3 align="center">YourFlyouts</h3>
-  <p align="center">
-    Fully customizable, multi-designed flyouts for Windows
-    <br />
-    <a href="https://discord.gg/JmgehPSDD6">Help, Report Bugs & Request Features »</a>
-  </p>
-</div>
-
 <!-- END Header.mustache -->
 <!-- START ShieldsFull.mustache -->
 <p align="center">
