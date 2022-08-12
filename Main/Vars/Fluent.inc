@@ -1,8 +1,8 @@
 [Variables]
-Height=180
+Height=200
 
 FontFace=Segoe UI
-Stroke=0
+Border=1
 Cap=Round
 
 PrimaryColor=12,12,12
