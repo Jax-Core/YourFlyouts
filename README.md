@@ -41,6 +41,8 @@ This project is heavily inspired by [ModernFlyouts](https://github.com/ModernFly
 > Note: Built-in flyout will not be permanently affected. It will be hidden temporarily while YourFlyouts is running, hence it does not modify any system files.
 > You can also use YourFlyouts to disable the flyout completely!
 
+> Note: YourFlyouts's brightness & airplane mode flyout will not support Insider builds of Windows 11. Volume, multimedia and locks flyout is supported via legacy keyhooks.
+
 <!-- START Features.mustache -->
 
 ## Features<!-- END Features.mustache -->
