@@ -46,7 +46,7 @@ This project is heavily inspired by [ModernFlyouts](https://github.com/ModernFly
 <!-- START Features.mustache -->
 
 ## Features<!-- END Features.mustache -->
-* Smooth animations, with the avability to reduce & turn off
+* Smooth animations, with the ability to reduce & turn off
 * Multiple visual styles
 * No setup needed
 * Also supports [NowPlaying](https://docs.rainmeter.net/manual/measures/nowplaying/) and [WebNowPlaying](https://github.com/tjhrulz/WebNowPlaying)
