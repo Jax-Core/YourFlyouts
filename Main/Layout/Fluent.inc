@@ -43,10 +43,12 @@ LeftMouseDownAction=[!SetOption MediaHoverCircle Stroke "Stroke Color #FontColor
 OnUpdateAction=[!SetOption VolumeString Text """[&Func:volumeLevel()]"""][!SetOption VolumeString FontFace "#FontFace#"]
 
 [mBrightness]
-IfCondition=(mBrightness = 0)
+IfCondition=(mBrightness = 0) && (#ShowBrightnessVal# = 0)
 IfTrueAction=[!SetOption VolumeString Text "[\xEC8A]"][!SetOption VolumeString FontFace "Segoe MDL2 Assets"]
-IfCondition2=(mBrightness > 0)
+IfCondition2=(mBrightness > 0) && (#ShowBrightnessVal# = 0)
 IfTrueAction2=[!SetOption VolumeString Text "[\xE706]"][!SetOption VolumeString FontFace "Segoe MDL2 Assets"]
+IfCondition3=(#ShowBrightnessVal# = 1)
+IfTrueAction3=[!SetOption VolumeString Text "[mBrightness:]%"][!SetOption VolumeString FontFace "#fontFace#"]
 IfConditionMode=1
 
 [FrostedGlass]

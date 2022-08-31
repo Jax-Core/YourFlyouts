@@ -5,6 +5,8 @@ FontFace=Segoe UI
 Border=1
 Cap=Round
 
+ShowBrightnessVal=0
+
 PrimaryColor=12,12,12
 PrimaryOpacity=185
 FontColor=255,255,255
