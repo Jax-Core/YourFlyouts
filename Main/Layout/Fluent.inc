@@ -43,7 +43,7 @@ LeftMouseDownAction=[!SetOption MediaHoverCircle Stroke "Stroke Color #FontColor
 OnUpdateAction=[!SetOption VolumeString Text """[&Func:volumeLevel()]"""][!SetOption VolumeString FontFace "#FontFace#"]
 
 [mBrightness]
-IfCondition=(mBrightness == 0)
+IfCondition=(mBrightness = 0)
 IfTrueAction=[!SetOption VolumeString Text "[\xEC8A]"][!SetOption VolumeString FontFace "Segoe MDL2 Assets"]
 IfCondition2=(mBrightness > 0)
 IfTrueAction2=[!SetOption VolumeString Text "[\xE706]"][!SetOption VolumeString FontFace "Segoe MDL2 Assets"]
@@ -154,7 +154,7 @@ W=(#H#*1.5)
 H=(#H#)
 PreserveAspectRatio=2
 MaskImageName=#@#Images\FadeMask.png
-ImageName=[#PlayerType#Cover]
+; ImageName=[#PlayerType#Cover]
 DynamicVariables=1
 Group=Music | Standard | MediaImage
 Container=MediaC
@@ -166,7 +166,7 @@ Y=(#P#)
 W=(64*#Scale#)
 H=(64*#Scale#)
 PreserveAspectRatio=2
-ImageName=[#PlayerType#Cover]
+; ImageName=[#PlayerType#Cover]
 MaskImageName=#@#Images\SquareRoundedMask.png
 DynamicVariables=1
 Group=Music | Standard | MediaImage
