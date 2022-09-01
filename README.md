@@ -43,6 +43,8 @@ This project is heavily inspired by [ModernFlyouts](https://github.com/ModernFly
 > Note: YourFlyouts's brightness & airplane mode flyout will not support Insider builds of Windows 11. Volume, multimedia and locks flyout is supported via legacy keyhooks.
 
 <!-- START Screenshots.mustache -->
+## Screenshots
+You can view screenshots [here](https://raw.githubusercontent.com/Jax-Core/YourFlyouts/main/Screenshots.md)!
 <!-- END Screenshots.mustache -->
 
 <!-- START Features.mustache -->
