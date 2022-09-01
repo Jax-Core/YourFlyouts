@@ -44,7 +44,7 @@ This project is heavily inspired by [ModernFlyouts](https://github.com/ModernFly
 
 <!-- START Screenshots.mustache -->
 ## Screenshots
-You can view screenshots [here](https://github.com/Jax-Core/YourFlyouts/blob/main/README.md)!
+You can view screenshots [here](https://github.com/Jax-Core/YourFlyouts/blob/main/Screenshots.md)!
 
 <!-- END Screenshots.mustache -->
 
