@@ -23,7 +23,6 @@
   <img alt="Github" src="https://img.shields.io/github/license/Jax-Core/YourFlyouts?style=for-the-badge" />
 </p><!-- END ShieldsFull.mustache -->
 
-
 <!-- START About.mustache -->
 
 ## About
@@ -42,6 +41,9 @@ This project is heavily inspired by [ModernFlyouts](https://github.com/ModernFly
 > You can also use YourFlyouts to disable the flyout completely!
 
 > Note: YourFlyouts's brightness & airplane mode flyout will not support Insider builds of Windows 11. Volume, multimedia and locks flyout is supported via legacy keyhooks.
+
+<!-- START Screenshots.mustache -->
+<!-- END Screenshots.mustache-->
 
 <!-- START Features.mustache -->
 
@@ -86,9 +88,6 @@ Use the JaxCore menu to configure YourFlyouts.
 For more information, visit [JaxCore's documentation](https://jaxcore.gitbook.io/core/)
 <br>
 <br><!-- END Setup.mustache -->
-
-## Screenshot gallery
-Moved it to [here](https://github.com/Jax-Core/YourFlyouts/blob/main/Gallery.md)
 
 <!-- START Footer.mustache -->
 
